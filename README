@@ -1,2 +1,20 @@
 
 cake schema run create users -path plugins\account_manager\config\sql
+
+exsample AppController
+
+class AppController extends Controller {
+	public $components = array(
+		'AccountManager.AuthSetting',
+		'Security',
+		'Auth',
+	);
+}
+
+exsample AppModel
+
+class AppModel extends Model {
+	public $actsAs = array(
+		'AccountManager.ForeignKey',
+	);
+}
