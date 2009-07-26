@@ -76,11 +76,9 @@ class ForeignKeyBehavior extends ModelBehavior {
 	}
 
 	function callbackForeignKey() {
-		if (App::import('Component', 'Sesssion')) {
-			$Session = new SessionComponent;
-			return $Session->read('Auth.'.$this->modelName.'.id');
-		}
-		return null;
+		App::import('Component', 'Session');
+		$Session = new SessionComponent;
+		return $Session->read('Auth.'.$this->modelName.'.id');
 	}
 }
 ?>
