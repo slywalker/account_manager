@@ -5,7 +5,7 @@
 			<?php
 			$lists = array();
 			$lists[] = array('dt' => __('Id', true), 'dd' => h($user['User']['id']));
-			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['name']));
+			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['username']));
 			$lists[] = array('dt' => __('Email', true), 'dd' => h($user['User']['email']));
 			$lists[] = array('dt' => __('Expires', true), 'dd' => h($user['User']['expires']));
 			$lists[] = array('dt' => __('Email Checkcode', true), 'dd' => h($user['User']['email_checkcode']));

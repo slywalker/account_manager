@@ -4,7 +4,7 @@
 		echo $form->create('User', array('action' => 'register'));
 		echo $form->inputs(array(
 			'legend' => __('Register User', true),
-			'name',
+			'username',
 			'email',
 			'email_confirm' => array('label' => __('Email Confirm', true)),
 			'password',

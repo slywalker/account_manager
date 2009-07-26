@@ -5,7 +5,7 @@
 		echo $form->inputs(array(
 			'legend' => __('Edit User', true),
 			'id',
-			'name',
+			'username',
 			'email',
 			'password',
 		));

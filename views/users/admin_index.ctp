@@ -8,22 +8,22 @@
 				'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 			));
 ?>		</p>
-		<p><?php echo $appPaginator->limit();?></p>
+		<p><?php //echo $appPaginator->limit();?></p>
 		<table>
 			<?php
 			$th = array();
 			$th[] = __('Del', true);
-			$th[] = $appPaginator->sort('id');
-			$th[] = $appPaginator->sort('name');
-			$th[] = $appPaginator->sort('email');
-			$th[] = $appPaginator->sort('disabled');
+			$th[] = $paginator->sort('id');
+			$th[] = $paginator->sort('username');
+			$th[] = $paginator->sort('email');
+			$th[] = $paginator->sort('disabled');
 			$th[] = __('Actions', true);
 			echo $html->tableHeaders($th);
 			foreach ($users as $key => $user) {
 				$td = array();
 				$td[] = $form->checkbox('delete.'.$key, array('value' => $user['User']['id']));
 				$td[] = h($user['User']['id']);
-				$td[] = h($user['User']['name']);
+				$td[] = h($user['User']['username']);
 				$td[] = h($user['User']['email']);
 				$td[] = h($user['User']['disabled']);
 				$actions = array();

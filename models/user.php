@@ -2,7 +2,7 @@
 class User extends AccountManagerAppModel {
 	public $name = 'User';
 	public $validate = array(
-		'name' => array(
+		'username' => array(
 			array(
 				'rule' => array('isUnique'),
 				'message' => 'This field must be unique',

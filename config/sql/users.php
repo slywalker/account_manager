@@ -11,7 +11,7 @@ class UsersSchema extends CakeSchema {
 
 	var $users = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary'),
-		'name' => array('type' => 'string', 'null' => false, 'default' => NULL),
+		'username' => array('type' => 'string', 'null' => false, 'default' => NULL),
 		'email' => array('type' => 'string', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'hash_password' => array('type' => 'string', 'null' => false, 'default' => NULL),
 		'expires' => array('type' => 'datetime', 'null' => true, 'default' => NULL, 'key' => 'index'),

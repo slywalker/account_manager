@@ -4,7 +4,7 @@
 		echo $form->create('User');
 		echo $form->inputs(array(
 			'legend' => __('Add User', true),
-			'name',
+			'username',
 			'email',
 			'password',
 		));

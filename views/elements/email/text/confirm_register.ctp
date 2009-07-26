@@ -5,7 +5,7 @@
 
 当サイトにご登録くださいましてありがとうございます。
 
-あなたのニックネームは <?php echo $user['User']['name']; ?> です。
+あなたのニックネームは <?php echo $user['User']['username']; ?> です。
 
 登録メールアドレスは <?php echo $user['User']['email']; ?> です。
 

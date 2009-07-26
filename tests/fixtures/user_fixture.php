@@ -6,7 +6,7 @@ class UserFixture extends CakeTestFixture {
 	public $name = 'User';
 	public $fields = array(
 		'id' => array('type'=>'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'name' => array('type'=>'string', 'null' => false, 'default' => NULL),
+		'username' => array('type'=>'string', 'null' => false, 'default' => NULL),
 		'email' => array('type'=>'string', 'null' => false, 'default' => NULL),
 		'hash_password' => array('type'=>'string', 'null' => false, 'default' => NULL),
 		'expires' => array('type'=>'datetime', 'null' => true, 'default' => NULL),
@@ -18,7 +18,7 @@ class UserFixture extends CakeTestFixture {
 	);
 	public $records = array(array(
 		'id'  => 1,
-		'name'  => 'Lorem ipsum dolor sit amet',
+		'username'  => 'Lorem ipsum dolor sit amet',
 		'email'  => 'foo@hoge.hage',
 		'hash_password'  => 'Lorem ipsum dolor sit amet',
 		'expires'  => '2009-07-18 21:40:02',

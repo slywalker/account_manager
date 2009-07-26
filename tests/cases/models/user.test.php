@@ -22,7 +22,7 @@ class UserTestCase extends CakeTestCase {
 
 		$expected = array('User' => array(
 			'id'  => 1,
-			'name'  => 'Lorem ipsum dolor sit amet',
+			'username'  => 'Lorem ipsum dolor sit amet',
 			'email'  => 'foo@hoge.hage',
 			'hash_password'  => 'Lorem ipsum dolor sit amet',
 			'expires'  => '2009-07-18 21:40:02',
@@ -88,7 +88,7 @@ class UserTestCase extends CakeTestCase {
 	function testUserRegisterAndConfirmRegister() {
 		// メールアドレスバリデーションで失敗
 		$data = array('User' => array(
-			'name' => 'Lorem ipsum dolor sit amet',
+			'username' => 'Lorem ipsum dolor sit amet',
 			'email' => 'foo',
 			'password' => 'Lorem ipsum dolor sit amet',
 		));
@@ -96,7 +96,7 @@ class UserTestCase extends CakeTestCase {
 		$this->assertIdentical($results, false);
 		// 成功
 		$data = array('User' => array(
-			'name' => 'test',
+			'username' => 'test',
 			'email'  => 'slywalker.net@gmail.com',
 			'password' => 'pass',
 		));
