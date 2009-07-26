@@ -13,19 +13,19 @@
 			<?php
 			$th = array();
 			$th[] = __('Del', true);
-			$th[] = $paginator->sort('id');
 			$th[] = $paginator->sort('username');
 			$th[] = $paginator->sort('email');
 			$th[] = $paginator->sort('disabled');
+			$th[] = $paginator->sort('created');
 			$th[] = __('Actions', true);
 			echo $html->tableHeaders($th);
 			foreach ($users as $key => $user) {
 				$td = array();
 				$td[] = $form->checkbox('delete.'.$key, array('value' => $user['User']['id']));
-				$td[] = h($user['User']['id']);
 				$td[] = h($user['User']['username']);
 				$td[] = h($user['User']['email']);
 				$td[] = h($user['User']['disabled']);
+				$td[] = h($user['User']['created']);
 				$actions = array();
 				$actions[] = $html->link(__('View', true), array('action' => 'view', $user['User']['id']));
 				$actions[] = $html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']));

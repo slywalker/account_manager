@@ -19,6 +19,8 @@ class UsersSchema extends CakeSchema {
 		'password_checkcode' => array('type' => 'string', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'disabled' => array('type' => 'boolean', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'email_tmp' => array('type' => 'string', 'null' => false, 'default' => NULL),
+		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'email' => array('column' => 'email', 'unique' => 0), 'expires' => array('column' => 'expires', 'unique' => 0), 'email_checkcode' => array('column' => 'email_checkcode', 'unique' => 0), 'password_checkcode' => array('column' => 'password_checkcode', 'unique' => 0), 'disabled' => array('column' => 'disabled', 'unique' => 0))
 	);
 }

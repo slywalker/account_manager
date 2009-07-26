@@ -39,9 +39,9 @@ class AuthSettingComponent extends Object {
 				$controller->Security->loginUsers = $users;
 				$controller->Security->requireLogin('*');
 			}
-			if (isset($controller->Auth)) {
-				$controller->Auth->allow('*');
-			}
+		}
+		if (isset($controller->Auth)) {
+			$controller->Auth->allow('*');
 		}
 	}
 
