@@ -1,0 +1,13 @@
+<?php
+class SMTP_CONFIG {
+
+	static $default = array(
+		'host' => 'tls://smtp.gmail.com',
+		'port' => 465,
+		'from' => 'username@gmail.com',
+		'user' => 'username',
+		'pass' => 'password',
+		'protocol' => 'SMTP_AUTH',
+	);
+}
+?>
