@@ -29,7 +29,7 @@
 				$actions = array();
 				$actions[] = $html->link(__('View', true), array('action' => 'view', $user['User']['id']));
 				$actions[] = $html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']));
-				$actions[] = $html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id']));
+				$actions[] = $html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete?', true));
 				$td[] = array(implode('&nbsp;|&nbsp;', $actions), array('class' => 'actions'));
 				echo $html->tableCells($td, array('class' => 'altrow'));
 			}

@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2009-07-26 21:19+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Yasuo Harada <slywalker.net@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /controllers/users_controller.php:19;27;47;150
+msgid "Invalid User"
+msgstr "無効なユーザです"
+
+#: /controllers/users_controller.php:37;52
+msgid "The User has been saved"
+msgstr "ユーザを保存しました"
+
+#: /controllers/users_controller.php:40;55;106
+msgid "The User could not be saved. Please, try again."
+msgstr "ユーザを保存できませんでした。再度試してください"
+
+#: /controllers/users_controller.php:64;74;79
+msgid "User deleted"
+msgstr "ユーザを削除しました"
+
+#: /controllers/users_controller.php:101;118;123;160
+msgid "A confirm mail has been sent"
+msgstr "確認メールを送信しました"
+
+#: /controllers/users_controller.php:130;139
+msgid "Confirm has been success"
+msgstr "確認が成功しました"
+
+#: /controllers/users_controller.php:132;141;178
+msgid "Invalid URL"
+msgstr "無効なURLです"
+
+#: /controllers/users_controller.php:165
+msgid "The Email could not be changed. Please, try again."
+msgstr "メールアドレスを変更できませんでした。再度試してください"
+
+#: /controllers/users_controller.php:186
+msgid "The Password has been changed"
+msgstr "パスワードを変更しました"
+
+#: /controllers/users_controller.php:190
+msgid "The Password could not be changed. Please, try again."
+msgstr "パスワードを変更できませんでした。再度試してください"
+
+#: /views/users/admin_add.ctp:6
+msgid "Add User"
+msgstr "ユーザの追加"
+
+#: /views/users/admin_add.ctp:11
+#: /views/users/admin_edit.ctp:12
+#: /views/users/change_email.ctp:11
+#: /views/users/change_password.ctp:11
+#: /views/users/forgot_password.ctp:9
+#: /views/users/login.ctp:11
+#: /views/users/register.ctp:13
+msgid "Submit"
+msgstr "送信"
+
+#: /views/users/admin_add.ctp:17
+#: /views/users/admin_edit.ctp:18
+#: /views/users/admin_index.ctp:20;54
+#: /views/users/admin_view.ctp:31
+#: /views/users/change_email.ctp:17
+#: /views/users/change_password.ctp:17
+#: /views/users/login.ctp:17
+#: /views/users/view.ctp:28
+msgid "Actions"
+msgstr "繰作"
+
+#: /views/users/admin_add.ctp:20
+#: /views/users/admin_edit.ctp:22
+#: /views/users/admin_view.ctp:36
+msgid "List Users"
+msgstr "ユーザのリスト"
+
+#: /views/users/admin_edit.ctp:6
+#: /views/users/admin_view.ctp:34
+msgid "Edit User"
+msgstr "ユーザの編集"
+
+#: /views/users/admin_edit.ctp:21
+#: /views/users/admin_index.ctp:32
+msgid "Delete"
+msgstr "削除"
+
+#: /views/users/admin_edit.ctp:21
+#: /views/users/admin_index.ctp:32
+#: /views/users/admin_view.ctp:35
+#: /views/users/view.ctp:33
+msgid "Are you sure you want to delete?"
+msgstr "本当に削除してよろしいですか？"
+
+#: /views/users/admin_index.ctp:4
+msgid "Users"
+msgstr "ユーザ"
+
+#: /views/users/admin_index.ctp:8
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+
+#: /views/users/admin_index.ctp:15
+msgid "Del"
+msgstr "削除"
+
+#: /views/users/admin_index.ctp:30
+msgid "View"
+msgstr "表示"
+
+#: /views/users/admin_index.ctp:31
+msgid "Edit"
+msgstr "編集"
+
+#: /views/users/admin_index.ctp:41
+msgid "Delete Selected"
+msgstr "選択したものを削除"
+
+#: /views/users/admin_index.ctp:44
+msgid "previous"
+msgstr "前のページ"
+
+#: /views/users/admin_index.ctp:46
+msgid "next"
+msgstr "次のページ"
+
+#: /views/users/admin_index.ctp:57
+#: /views/users/admin_view.ctp:37
+msgid "New User"
+msgstr "新しいユーザ"
+
+#: /views/users/admin_view.ctp:3
+#: /views/users/view.ctp:3
+msgid "User"
+msgstr "ユーザ"
+
+#: /views/users/admin_view.ctp:7
+msgid "Id"
+msgstr "Id"
+
+#: /views/users/admin_view.ctp:8
+#: /views/users/view.ctp:9
+msgid "Name"
+msgstr "名前"
+
+#: /views/users/admin_view.ctp:9
+#: /views/users/view.ctp:11
+msgid "Email"
+msgstr "メールアドレス"
+
+#: /views/users/admin_view.ctp:10
+msgid "Expires"
+msgstr "有効期限"
+
+#: /views/users/admin_view.ctp:11
+msgid "Email Checkcode"
+msgstr "Email Checkcode"
+
+#: /views/users/admin_view.ctp:12
+msgid "Password Checkcode"
+msgstr "Password Checkcode"
+
+#: /views/users/admin_view.ctp:13
+msgid "Disabled"
+msgstr "無効"
+
+#: /views/users/admin_view.ctp:14
+msgid "Email Tmp"
+msgstr "Email Tmp"
+
+#: /views/users/admin_view.ctp:15
+msgid "Modified"
+msgstr "更新日時"
+
+#: /views/users/admin_view.ctp:16
+msgid "Created"
+msgstr "登録日時"
+
+#: /views/users/admin_view.ctp:35
+#: /views/users/view.ctp:33
+msgid "Delete User"
+msgstr "ユーザの削除"
+
+#: /views/users/change_email.ctp:6
+#: /views/users/view.ctp:31
+msgid "Change Email"
+msgstr "メールアドレスの変更"
+
+#: /views/users/change_email.ctp:20
+#: /views/users/change_password.ctp:20
+msgid "View User"
+msgstr "ユーザの表示"
+
+#: /views/users/change_password.ctp:6
+#: /views/users/view.ctp:32
+msgid "Change Password"
+msgstr "パスワードの変更"
+
+#: /views/users/forgot_password.ctp:6
+#: /views/users/login.ctp:21
+msgid "Forgot Password"
+msgstr "パスワードを忘れた"
+
+#: /views/users/login.ctp:7
+msgid "Login"
+msgstr "ログイン"
+
+#: /views/users/login.ctp:20
+#: /views/users/register.ctp:6
+msgid "Register User"
+msgstr "ユーザの登録"
+
+#: /views/users/register.ctp:9
+msgid "Email Confirm"
+msgstr "メールアドレス 確認"
+
+#: /views/users/register.ctp:11
+msgid "Password Confirm"
+msgstr "パスワード 確認"
+
+#: /views/users/view.ctp:8
+msgid "Icon"
+msgstr "アイコン"
+

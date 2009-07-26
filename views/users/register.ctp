@@ -3,7 +3,7 @@
 		<?php
 		echo $form->create('User', array('action' => 'register'));
 		echo $form->inputs(array(
-			'legend' => __('Resister User', true),
+			'legend' => __('Register User', true),
 			'name',
 			'email',
 			'email_confirm' => array('label' => __('Email Confirm', true)),

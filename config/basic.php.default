@@ -1,0 +1,8 @@
+<?php
+class BASIC_CONFIG {
+
+	static $default = array(
+		'admin' => 'pass',
+	);
+}
+?>

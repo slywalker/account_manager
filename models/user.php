@@ -1,6 +1,6 @@
 <?php
-class User extends AppModel {
-	public $name = 'Account';
+class User extends AccountManagerAppModel {
+	public $name = 'User';
 	public $validate = array(
 		'name' => array(
 			array(
@@ -28,16 +28,16 @@ class User extends AppModel {
 		),
 		'password' => array(
 			array(
-				'rule' => array('checkCompare', '_confirm'),
-				'message' => 'This field is differ with confirm',
-			),
-			array(
 				'rule' => array('alphaNumeric'),  
 				'message' => 'This field must be number of characters in English',
 			),
 			array(
 				'rule' => array('minLength', '4'),
 				'message' => 'This field needs 4 characters or more',
+			),
+			array(
+				'rule' => array('checkCompare', '_confirm'),
+				'message' => 'This field is differ with confirm',
 			),
 			array(
 				'rule' => array('notEmpty'),

@@ -1,0 +1,2 @@
+
+cake schema run create users -path plugins\account_manager\config\sql

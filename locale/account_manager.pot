@@ -1,0 +1,235 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# No version information was available in the source files.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-07-26 21:19+0900\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /controllers/users_controller.php:19;27;47;150
+msgid "Invalid User"
+msgstr ""
+
+#: /controllers/users_controller.php:37;52
+msgid "The User has been saved"
+msgstr ""
+
+#: /controllers/users_controller.php:40;55;106
+msgid "The User could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/users_controller.php:64;74;79
+msgid "User deleted"
+msgstr ""
+
+#: /controllers/users_controller.php:101;118;123;160
+msgid "A confirm mail has been sent"
+msgstr ""
+
+#: /controllers/users_controller.php:130;139
+msgid "Confirm has been success"
+msgstr ""
+
+#: /controllers/users_controller.php:132;141;178
+msgid "Invalid URL"
+msgstr ""
+
+#: /controllers/users_controller.php:165
+msgid "The Email could not be changed. Please, try again."
+msgstr ""
+
+#: /controllers/users_controller.php:186
+msgid "The Password has been changed"
+msgstr ""
+
+#: /controllers/users_controller.php:190
+msgid "The Password could not be changed. Please, try again."
+msgstr ""
+
+#: /views/users/admin_add.ctp:6
+msgid "Add User"
+msgstr ""
+
+#: /views/users/admin_add.ctp:11
+#: /views/users/admin_edit.ctp:12
+#: /views/users/change_email.ctp:11
+#: /views/users/change_password.ctp:11
+#: /views/users/forgot_password.ctp:9
+#: /views/users/login.ctp:11
+#: /views/users/register.ctp:13
+msgid "Submit"
+msgstr ""
+
+#: /views/users/admin_add.ctp:17
+#: /views/users/admin_edit.ctp:18
+#: /views/users/admin_index.ctp:20;54
+#: /views/users/admin_view.ctp:31
+#: /views/users/change_email.ctp:17
+#: /views/users/change_password.ctp:17
+#: /views/users/login.ctp:17
+#: /views/users/view.ctp:28
+msgid "Actions"
+msgstr ""
+
+#: /views/users/admin_add.ctp:20
+#: /views/users/admin_edit.ctp:22
+#: /views/users/admin_view.ctp:36
+msgid "List Users"
+msgstr ""
+
+#: /views/users/admin_edit.ctp:6
+#: /views/users/admin_view.ctp:34
+msgid "Edit User"
+msgstr ""
+
+#: /views/users/admin_edit.ctp:21
+#: /views/users/admin_index.ctp:32
+msgid "Delete"
+msgstr ""
+
+#: /views/users/admin_edit.ctp:21
+#: /views/users/admin_index.ctp:32
+#: /views/users/admin_view.ctp:35
+#: /views/users/view.ctp:33
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: /views/users/admin_index.ctp:4
+msgid "Users"
+msgstr ""
+
+#: /views/users/admin_index.ctp:8
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: /views/users/admin_index.ctp:15
+msgid "Del"
+msgstr ""
+
+#: /views/users/admin_index.ctp:30
+msgid "View"
+msgstr ""
+
+#: /views/users/admin_index.ctp:31
+msgid "Edit"
+msgstr ""
+
+#: /views/users/admin_index.ctp:41
+msgid "Delete Selected"
+msgstr ""
+
+#: /views/users/admin_index.ctp:44
+msgid "previous"
+msgstr ""
+
+#: /views/users/admin_index.ctp:46
+msgid "next"
+msgstr ""
+
+#: /views/users/admin_index.ctp:57
+#: /views/users/admin_view.ctp:37
+msgid "New User"
+msgstr ""
+
+#: /views/users/admin_view.ctp:3
+#: /views/users/view.ctp:3
+msgid "User"
+msgstr ""
+
+#: /views/users/admin_view.ctp:7
+msgid "Id"
+msgstr ""
+
+#: /views/users/admin_view.ctp:8
+#: /views/users/view.ctp:9
+msgid "Name"
+msgstr ""
+
+#: /views/users/admin_view.ctp:9
+#: /views/users/view.ctp:11
+msgid "Email"
+msgstr ""
+
+#: /views/users/admin_view.ctp:10
+msgid "Expires"
+msgstr ""
+
+#: /views/users/admin_view.ctp:11
+msgid "Email Checkcode"
+msgstr ""
+
+#: /views/users/admin_view.ctp:12
+msgid "Password Checkcode"
+msgstr ""
+
+#: /views/users/admin_view.ctp:13
+msgid "Disabled"
+msgstr ""
+
+#: /views/users/admin_view.ctp:14
+msgid "Email Tmp"
+msgstr ""
+
+#: /views/users/admin_view.ctp:15
+msgid "Modified"
+msgstr ""
+
+#: /views/users/admin_view.ctp:16
+msgid "Created"
+msgstr ""
+
+#: /views/users/admin_view.ctp:35
+#: /views/users/view.ctp:33
+msgid "Delete User"
+msgstr ""
+
+#: /views/users/change_email.ctp:6
+#: /views/users/view.ctp:31
+msgid "Change Email"
+msgstr ""
+
+#: /views/users/change_email.ctp:20
+#: /views/users/change_password.ctp:20
+msgid "View User"
+msgstr ""
+
+#: /views/users/change_password.ctp:6
+#: /views/users/view.ctp:32
+msgid "Change Password"
+msgstr ""
+
+#: /views/users/forgot_password.ctp:6
+#: /views/users/login.ctp:21
+msgid "Forgot Password"
+msgstr ""
+
+#: /views/users/login.ctp:7
+msgid "Login"
+msgstr ""
+
+#: /views/users/login.ctp:20
+#: /views/users/register.ctp:6
+msgid "Register User"
+msgstr ""
+
+#: /views/users/register.ctp:9
+msgid "Email Confirm"
+msgstr ""
+
+#: /views/users/register.ctp:11
+msgid "Password Confirm"
+msgstr ""
+
+#: /views/users/view.ctp:8
+msgid "Icon"
+msgstr ""
+
