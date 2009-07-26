@@ -1,6 +1,6 @@
 <?php
 /*
-*  このコンポーネントの呼び出しは、AuthComponentの前!!
+*  このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの前!!
 */
 class AuthSettingComponent extends Object {
 
@@ -34,10 +34,14 @@ class AuthSettingComponent extends Object {
 	private function __adminSettings(&$controller) {
 		if (config('basic')) {
 			$users = BASIC_CONFIG::$default;
-			$controller->Security->loginOptions = array('type'=>'basic');
-			$controller->Security->loginUsers = $users;
-			$controller->Security->requireLogin('*');
-			$controller->Auth->allow('*');
+			if (isset($controller->Security)) {
+				$controller->Security->loginOptions = array('type'=>'basic');
+				$controller->Security->loginUsers = $users;
+				$controller->Security->requireLogin('*');
+			}
+			if (isset($controller->Auth)) {
+				$controller->Auth->allow('*');
+			}
 		}
 	}
 
