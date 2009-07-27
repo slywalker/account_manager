@@ -20,8 +20,6 @@ class AuthSettingComponent extends Object {
 			$controller->Auth->loginAction = array(Configure::read('Routing.admin') => false, 'plugin' => 'account_manager', 'controller' => 'users', 'action' => 'login');
 			$controller->Auth->allow('*');
 			$controller->Auth->deny('add', 'edit', 'delete');
-			$user = $controller->Auth->user();
-			Configure::write('Auth', $user['User']);
 		}
 	}
 

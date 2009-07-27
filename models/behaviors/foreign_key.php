@@ -16,6 +16,8 @@
  * @package default
  * @author Yasuo Harada
  */
+App::import('Component', 'Session');
+
 class ForeignKeyBehavior extends ModelBehavior {
 	public $settings = array();
 
@@ -27,6 +29,8 @@ class ForeignKeyBehavior extends ModelBehavior {
 		);
 		$config = array_merge($defalut, $config);
 		$this->settings[$model->name] = $config;
+		
+		$model->Session = new SessionComponent;
 	}
 
 	public function beforeFind(&$model, $query) {
@@ -83,9 +87,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 	}
 
 	public function callbackForeignKey(&$model) {
-		App::import('Component', 'Session');
-		$Session = new SessionComponent;
-		return $Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
+		return $model->Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
 	}
 }
 ?>
