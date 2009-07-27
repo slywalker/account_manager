@@ -5,7 +5,7 @@
  * How to use.
  * Ex.
  * 	class AppModel extends Model {
- * 		var $actsAs = array('ForeignKey');
+ * 		var $actsAs = array('ForeignKey' => array('modelName' => 'User', 'foreignKey' => 'user_id', 'callback' => 'callbackForeignKey'));
  * 
  * 		function callbackForeignKey()
  * 		{
@@ -17,68 +17,57 @@
  * @author Yasuo Harada
  */
 class ForeignKeyBehavior extends ModelBehavior {
-	var $foreignKey = 'user_id';
-	var $modelName = 'User';
-	var $callback = 'callbackForeignKey';
+	public $settings = array();
 
-	function setup(&$model, $config=array())
-	{
-		if (isset($config['foreignKey'])) {
-			$this->foreignKey = $config['foreignKey'];
-			$this->modelName = str_replace('Id', '', Inflector::camelize($config['foreignKey']));
-		}
-		if (isset($config['modelName'])) {
-			$this->modelName = $config['modelName'];
-		}
-		if (isset($config['callback'])) {
-			$this->callback = $config['callback'];
-		}
+	public function setup(&$model, $config=array()) {
+		$defalut = array(
+			'modelName' => 'User',
+			'foreignKey' => 'user_id',
+			'callback' => 'callbackForeignKey',
+		);
+		$config = array_merge($defalut, $config);
+		$this->settings[$model->name] = $config;
 	}
 
-	function beforeFind(&$model, $query)
-	{
-		if ($model->name === $this->modelName) {
-			$id = $model->{$this->callback}();
+	public function beforeFind(&$model, $query) {
+		$fk = $this->settings[$model->name]['foreignKey'];
+		if ($model->name === $this->settings[$model->name]['modelName']) {
+			$id = $model->{$this->settings[$model->name]['callback']}();
 			if ($id) {
-				$conditions = array(
-					$model->name.'.id'=>$id,
-				);
+				$conditions = array($model->name.'.id' => $id);
 				$query['conditions'] = Set::merge($query['conditions'], $conditions);
 			}
 		}
-		
-		elseif ($model->hasField($this->foreignKey)) {
+		elseif ($model->hasField($fk)) {
 			if (!isset($query['foreignKey']) || $query['foreignKey'] !== false) {
-				$value = $model->{$this->callback}();
+				$value = $model->{$this->settings[$model->name]['callback']}();
 				if ($value) {
-					$conditions = array(
-						$model->alias.'.'.$this->foreignKey=>$value,
-					);
+					$conditions = array($model->alias.'.'.$fk => $value);
 					$query['conditions'] = Set::merge($query['conditions'], $conditions);
 				} else {
-					trigger_error(__("ForeignKeyBehavior: Can't set at find foreign key [{$this->foreignKey}] in {$model->alias}.", true), E_USER_ERROR);
+					trigger_error(__("ForeignKeyBehavior: Can't set at find foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
 				}
 			}
 		}
 		return $query;
 	}
 	
-	function beforeValidate(&$model)
-	{
-		if ($model->hasField($this->foreignKey)) {
-			$value = $model->{$this->callback}();
-			if ($value && !isset($model->data[$model->alias][$this->foreignKey])) {
-				$model->data[$model->alias][$this->foreignKey] = $value;
+	function beforeValidate(&$model) {
+		$fk = $this->settings[$model->name]['foreignKey'];
+		if ($model->hasField($fk)) {
+			$value = $model->{$this->settings[$model->name]['callback']}();
+			if ($value && !isset($model->data[$model->alias][$fk])) {
+				$model->data[$model->alias][$fk] = $value;
 			} else {
-				trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$this->foreignKey}] in {$model->alias}.", true), E_USER_ERROR);
+				trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
 			}
 		}
 	}
 
-	function callbackForeignKey() {
+	function callbackForeignKey(&$model) {
 		App::import('Component', 'Session');
 		$Session = new SessionComponent;
-		return $Session->read('Auth.'.$this->modelName.'.id');
+		return $Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
 	}
 }
 ?>
