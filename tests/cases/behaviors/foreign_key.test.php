@@ -11,7 +11,7 @@ class Article extends CakeTestModel {
 	var $belongsTo = array('User');
 
 	function callbackForeignKey() {
-		return 10;
+		return '4a6c5d0c-44d0-4fd5-b099-140c83b789e4';
 	}
 }
 
@@ -41,7 +41,7 @@ class ForeignKeyBehaviorTest extends CakeTestCase {
 			'updated' => '2007-03-18 10:41:31',
 		));
 		$result = $this->Article->save($data);
-		$this->assertIdentical($result['Article']['user_id'], 10);
+		$this->assertIdentical($result['Article']['user_id'], '4a6c5d0c-44d0-4fd5-b099-140c83b789e4');
 
 		// beforeFind
 		$results = $this->Article->find('all');
