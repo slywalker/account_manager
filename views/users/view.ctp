@@ -4,8 +4,7 @@
 		<dl>
 			<?php
 			$lists = array();
-			$grav_url = 'http://www.gravatar.com/avatar.php?gravatar_id='.md5(strtolower($user['User']['email'])).'&size=50';
-			$lists[] = array('dt' => __('Icon', true), 'dd' => $html->image($grav_url, array('url' => 'http://www.gravatar.com/')));
+			$lists[] = array('dt' => __('Icon', true), 'dd' => $html->image($gravatar->url($user['User']['email'], 50), array('url' => 'http://www.gravatar.com/')));
 			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['username']));
 			if (Configure::read('Auth.id') === $user['User']['id']) {
 				$lists[] = array('dt' => __('Email', true), 'dd' => h($user['User']['email']));

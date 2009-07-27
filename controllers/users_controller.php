@@ -3,6 +3,7 @@ class UsersController extends AccountManagerAppController {
 	public $name = 'Users';
 	public $uses = array('AccountManager.User');
 	public $components = array('AccountManager.Qdmail', 'AccountManager.Qdsmtp');
+	public $helpers = array('Gravatar');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
