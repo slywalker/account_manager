@@ -106,7 +106,8 @@ class QdmailBase extends QdmailBranch{
 	//----------------------------
 	var	$LFC				=  "\r\n";// Notice: CRLF ,If you failed, change to "\n"
 	var $LFC_Qmail			=  null;
-	var $is_qmail			=  null;
+	//var $is_qmail			=  null;
+	var $is_qmail			=  false;
 	var $language			= 'ja';
 	var $kana				=  false; // kana header
 	//----------
