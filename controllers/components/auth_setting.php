@@ -5,12 +5,6 @@
 class AuthSettingComponent extends Object {
 
 	public function startup(&$controller) {
-		if (isset($controller->Security)) {
-			$controller->Security->disabledFields = array('hash_password');
-		}
-		if (isset($controller->data['User']['password'])) {
-			$controller->data['User']['hash_password'] = $controller->data['User']['password'];
-		}
 		if (!empty($controller->params[Configure::read('Routing.admin')])) {
 			$this->__adminSettings($controller);
 		} else {

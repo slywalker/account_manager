@@ -4,6 +4,16 @@ class UsersController extends AccountManagerAppController {
 	public $uses = array('AccountManager.User');
 	public $components = array('AccountManager.Qdmail', 'AccountManager.Qdsmtp');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		if (isset($this->Security)) {
+			$this->Security->disabledFields = array('hash_password');
+		}
+		if (isset($this->data['User']['password'])) {
+			$this->data['User']['hash_password'] = $this->data['User']['password'];
+		}
+	}
+
 	public function admin_index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
