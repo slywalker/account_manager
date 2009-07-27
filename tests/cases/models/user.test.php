@@ -1,6 +1,12 @@
 <?php 
 /* SVN FILE: $Id$ */
 /* User Test cases generated on: 2009-07-18 21:07:02 : 1247920802*/
+App::import('Core', array('AppModel', 'Model'));
+
+if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
+	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
+}
+
 App::import('Model', 'AccountManager.User');
 
 class UserTestCase extends CakeTestCase {
@@ -17,28 +23,15 @@ class UserTestCase extends CakeTestCase {
 
 	function testUserFind() {
 		$this->User->recursive = -1;
-		$results = $this->User->find('first');
+		$results = $this->User->find('all');
 		$this->assertTrue(!empty($results));
-
-		$expected = array('User' => array(
-			'id'  => 1,
-			'username'  => 'Lorem ipsum dolor sit amet',
-			'email'  => 'foo@hoge.hage',
-			'hash_password'  => 'Lorem ipsum dolor sit amet',
-			'expires'  => '2009-07-18 21:40:02',
-			'email_checkcode'  => 'Lorem ipsum dolor sit amet',
-			'password_checkcode'  => 'Lorem ipsum dolor sit amet',
-			'disabled'  => 1,
-			'email_tmp'  => 'Lorem ipsum dolor sit amet'
-		));
-		$this->assertEqual($results, $expected);
 	}
 
 	function testUserChangeEmailAndConfirmEmail() {
 		// メールアドレスバリデーションで失敗
 		$data = array('User' => array(
-			'id' => 1,
-			'email' => 'foo',
+			'id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4',
+			'email' => 'mail',
 		));
 		$results = $this->User->changeEmail($data);
 		$this->assertIdentical($results, false);
@@ -46,15 +39,15 @@ class UserTestCase extends CakeTestCase {
 		$this->User->create();
 		$this->User->saveField('email', 'bar@hoge.hage');
 		$data = array('User' => array(
-			'id' => 1,
-			'email' => 'bar@hoge.hage',
+			'id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4',
+			'email' => 'mail2@localhost.local',
 		));
 		$results = $this->User->changeEmail($data);
 		$this->assertIdentical($results, false);
 		// 成功
 		$data = array('User' => array(
-			'id' => 1,
-			'email' => 'slywalker.net@gmail.com',
+			'id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4',
+			'email' => 'mail3@localhost.loc',
 		));
 		$results = $this->User->changeEmail($data);
 		$this->assertTrue(!empty($results));
@@ -62,12 +55,12 @@ class UserTestCase extends CakeTestCase {
 		$emailCheckcode = $results['User']['email_checkcode'];
 		// データが置き換わっているか確認
 		$this->User->recursive = -1;
-		$results = $this->User->find('first', array('User.id' => 1));
+		$results = $this->User->find('first', array('User.id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4'));
 		$this->assertTrue(!empty($results));
-		$this->assertIdentical($results['User']['email'], 'foo@hoge.hage');
+		$this->assertIdentical($results['User']['email'], 'mail@localhost.loc');
 		$this->assertIdentical($results['User']['email_tmp'], $data['User']['email']);
 		// 確認テスト
-		$results = $this->User->confirmEmail('Lorem ipsum dolor sit amet');
+		$results = $this->User->confirmEmail('some-uuid');
 		$this->assertIdentical($results, false);
 		$results = $this->User->confirmEmail($emailCheckcode);
 		$this->assertTrue(!empty($results));
@@ -78,26 +71,26 @@ class UserTestCase extends CakeTestCase {
 	}
 
 	function testUserForgotPassword() {
-		$results = $this->User->forgotPassword('not_exist_email');
+		$results = $this->User->forgotPassword('mail99@localhost.loc');
 		$this->assertIdentical($results, false);
 
-		$results = $this->User->forgotPassword('foo@hoge.hage');
+		$results = $this->User->forgotPassword('mail2@localhost.loc');
 		$this->assertTrue(!empty($results));
 	}
 
 	function testUserRegisterAndConfirmRegister() {
 		// メールアドレスバリデーションで失敗
 		$data = array('User' => array(
-			'username' => 'Lorem ipsum dolor sit amet',
-			'email' => 'foo',
-			'password' => 'Lorem ipsum dolor sit amet',
+			'username' => 'test',
+			'email' => 'mail',
+			'password' => 'pass',
 		));
 		$results = $this->User->register($data);
 		$this->assertIdentical($results, false);
 		// 成功
 		$data = array('User' => array(
 			'username' => 'test',
-			'email'  => 'slywalker.net@gmail.com',
+			'email'  => 'mail100@localhost.loc',
 			'password' => 'pass',
 		));
 		$results = $this->User->register($data);
@@ -105,7 +98,7 @@ class UserTestCase extends CakeTestCase {
 		$this->assertIdentical($results['User']['disabled'], 1);
 		$emailCheckcode = $results['User']['email_checkcode'];
 		// 確認テスト
-		$results = $this->User->confirmRegister('Lorem ipsum dolor sit amet');
+		$results = $this->User->confirmRegister('some-uuid');
 		$this->assertIdentical($results, false);
 		$results = $this->User->confirmRegister($emailCheckcode);
 		$this->assertTrue(!empty($results));
@@ -116,7 +109,7 @@ class UserTestCase extends CakeTestCase {
 
 	function testUserChangepassword() {
 		$data = array('User' => array(
-			'id' => 1,
+			'id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4',
 			'password' => 'password',
 			'password_confirm' => 'not_password',
 			'hash_password' => 'hash_password',
@@ -124,7 +117,7 @@ class UserTestCase extends CakeTestCase {
 		$results = $this->User->changePassword($data);
 		$this->assertIdentical($results, false);
 		$data = array('User' => array(
-			'id' => 1,
+			'id' => '4a6c5d0c-44d0-4fd5-b328-140c83b789e4',
 			'password' => 'password',
 			'password_confirm' => 'password',
 			'hash_password' => 'hash_password',

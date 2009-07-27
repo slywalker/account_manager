@@ -51,8 +51,8 @@ class ForeignKeyBehavior extends ModelBehavior {
 		}
 		return $query;
 	}
-	
-	function beforeValidate(&$model) {
+
+	public function beforeValidate(&$model) {
 		$fk = $this->settings[$model->name]['foreignKey'];
 		if ($model->hasField($fk)) {
 			$value = $model->{$this->settings[$model->name]['callback']}();
@@ -64,7 +64,25 @@ class ForeignKeyBehavior extends ModelBehavior {
 		}
 	}
 
-	function callbackForeignKey(&$model) {
+	public function beforeDelete(&$model) {
+		$fk = $this->settings[$model->name]['foreignKey'];
+		if ($model->hasField($fk)) {
+			$value = $model->{$this->settings[$model->name]['callback']}();
+			if ($value && !isset($model->data[$model->alias][$fk])) {
+				$conditions = array('id' => $model->id, $fk => $value);
+				$recursive = -1;
+				if ($model->find('first', compact('conditions', 'recursive'))) {
+					return true;
+				}
+			} else {
+				trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
+			}
+			return false;
+		}
+		return true;
+	}
+
+	public function callbackForeignKey(&$model) {
 		App::import('Component', 'Session');
 		$Session = new SessionComponent;
 		return $Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
