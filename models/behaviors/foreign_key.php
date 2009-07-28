@@ -49,7 +49,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 					$conditions = array($model->alias.'.'.$fk => $value);
 					$query['conditions'] = Set::merge($query['conditions'], $conditions);
 				} else {
-					trigger_error(__("ForeignKeyBehavior: Can't set at find foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
+					//trigger_error(__("ForeignKeyBehavior: Can't set at find foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
 				}
 			}
 		}
@@ -62,10 +62,13 @@ class ForeignKeyBehavior extends ModelBehavior {
 			$value = $model->{$this->settings[$model->name]['callback']}();
 			if ($value && !isset($model->data[$model->alias][$fk])) {
 				$model->data[$model->alias][$fk] = $value;
+				return true;
 			} else {
-				trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
+				//trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
 			}
+			return false;
 		}
+		return true;
 	}
 
 	public function beforeDelete(&$model) {
@@ -79,7 +82,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 					return true;
 				}
 			} else {
-				trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
+				//trigger_error(__("ForeignKeyBehavior: Can't set at save foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
 			}
 			return false;
 		}
