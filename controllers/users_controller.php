@@ -95,7 +95,7 @@ class UsersController extends AccountManagerAppController {
 	}
 
 	public function login() {
-		
+		$this->Session->write('Auth.redirect', '/');
 	}
 
 	public function logout() {
@@ -111,7 +111,6 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Confirm Register', 'confirm_register')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
-					$this->Session->delete('Auth.redirect');
 					$this->redirect(array('action'=>'login'));
 				}
 			}
@@ -129,14 +128,12 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Change Password', 'forgot_password')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
-					$this->Session->delete('Auth.redirect');
-					$this->redirect(array('action'=>'login'));
+					$this->redirect(array('action'=>'logout'));
 				}
 			}
 			$this->User->rollback();
 			$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
-			$this->Session->delete('Auth.redirect');
-			$this->redirect(array('action'=>'login'));
+			$this->redirect(array('action'=>'logout'));
 		}
 	}
 
@@ -146,8 +143,7 @@ class UsersController extends AccountManagerAppController {
 		} else {
 			$this->Session->setFlash(__('Invalid URL', true));
 		}
-		$this->Session->delete('Auth.redirect');
-		$this->redirect(array('action'=>'login'));
+		$this->redirect(array('action'=>'logout'));
 	}
 
 	public function confirm_email($emailCheckcode = null) {
@@ -156,8 +152,7 @@ class UsersController extends AccountManagerAppController {
 		} else {
 			$this->Session->setFlash(__('Invalid URL', true));
 		}
-		$this->Session->delete('Auth.redirect');
-		$this->redirect(array('action'=>'login'));
+		$this->redirect(array('action'=>'logout'));
 	}
 
 
@@ -165,7 +160,7 @@ class UsersController extends AccountManagerAppController {
 		$user = $this->User->find('first');
 		if (!$user && !$this->data) {
 			$this->Session->setFlash(__('Invalid User', true));
-			$this->redirect(array('action'=>'login'));
+			$this->redirect(array('action'=>'logout'));
 		}
 		if ($this->data) {
 			$this->User->begin();
@@ -175,7 +170,6 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Confirm Email', 'confirm_email')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
-					$this->Session->delete('Auth.redirect');
 					$this->redirect(array('action'=>'logout'));
 				}
 			}
@@ -194,7 +188,7 @@ class UsersController extends AccountManagerAppController {
 		}
 		if (!$id && !$this->data) {
 			$this->Session->setFlash(__('Invalid URL', true));
-			$this->redirect(array('action'=>'login'));
+			$this->redirect(array('action'=>'logout'));
 		}
 		if ($this->data) {
 			$this->data['User']['hash_password'] = $this->Auth->password($this->data['User']['password']);
@@ -202,7 +196,6 @@ class UsersController extends AccountManagerAppController {
 			if ($user = $this->User->changePassword($this->data)) {
 				$this->User->commit();
 				$this->Session->setFlash(__('The Password has been changed', true), 'default', array('class' => 'message success'));
-				$this->Session->delete('Auth.redirect');
 				$this->redirect(array('action'=>'logout'));
 			}
 			$this->User->rollback();
