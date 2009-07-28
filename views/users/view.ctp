@@ -6,7 +6,7 @@
 			$lists = array();
 			$lists[] = array('dt' => __('Icon', true), 'dd' => $html->image($gravatar->url($user['User']['email'], 50), array('url' => 'http://www.gravatar.com/')));
 			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['username']));
-			if (Configure::read('Auth.id') === $user['User']['id']) {
+			if ($session->read('Auth.User.id') === $user['User']['id']) {
 				$lists[] = array('dt' => __('Email', true), 'dd' => h($user['User']['email']));
 			}
 			foreach ($lists as $key => $list) {
