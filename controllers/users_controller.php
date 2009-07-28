@@ -111,6 +111,7 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Confirm Register', 'confirm_register')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->delete('Auth.redirect');
 					$this->redirect(array('action'=>'login'));
 				}
 			}
@@ -128,11 +129,13 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Change Password', 'forgot_password')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->delete('Auth.redirect');
 					$this->redirect(array('action'=>'login'));
 				}
 			}
 			$this->User->rollback();
 			$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+			$this->Session->delete('Auth.redirect');
 			$this->redirect(array('action'=>'login'));
 		}
 	}
@@ -143,6 +146,7 @@ class UsersController extends AccountManagerAppController {
 		} else {
 			$this->Session->setFlash(__('Invalid URL', true));
 		}
+		$this->Session->delete('Auth.redirect');
 		$this->redirect(array('action'=>'login'));
 	}
 
@@ -152,6 +156,7 @@ class UsersController extends AccountManagerAppController {
 		} else {
 			$this->Session->setFlash(__('Invalid URL', true));
 		}
+		$this->Session->delete('Auth.redirect');
 		$this->redirect(array('action'=>'login'));
 	}
 
@@ -170,6 +175,7 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Confirm Email', 'confirm_email')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->delete('Auth.redirect');
 					$this->redirect(array('action'=>'logout'));
 				}
 			}
@@ -196,6 +202,7 @@ class UsersController extends AccountManagerAppController {
 			if ($user = $this->User->changePassword($this->data)) {
 				$this->User->commit();
 				$this->Session->setFlash(__('The Password has been changed', true), 'default', array('class' => 'message success'));
+				$this->Session->delete('Auth.redirect');
 				$this->redirect(array('action'=>'logout'));
 			}
 			$this->User->rollback();
