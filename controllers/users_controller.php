@@ -170,7 +170,7 @@ class UsersController extends AccountManagerAppController {
 				if ($this->_send($user['User']['email'], 'Confirm Email', 'confirm_email')) {
 					$this->User->commit();
 					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
-					$this->redirect(array('action'=>'login'));
+					$this->redirect(array('action'=>'logout'));
 				}
 			}
 			$this->User->rollback();
@@ -196,7 +196,7 @@ class UsersController extends AccountManagerAppController {
 			if ($user = $this->User->changePassword($this->data)) {
 				$this->User->commit();
 				$this->Session->setFlash(__('The Password has been changed', true), 'default', array('class' => 'message success'));
-				$this->redirect(array('action'=>'login'));
+				$this->redirect(array('action'=>'logout'));
 			}
 			$this->User->rollback();
 			$this->Session->setFlash(__('The Password could not be changed. Please, try again.', true));

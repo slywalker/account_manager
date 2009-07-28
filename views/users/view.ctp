@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div id="sidebar">
-	<?php if (Configure::read('Auth.id') === $user['User']['id']) :?>
+	<?php if ($session->read('Auth.User.id') === $user['User']['id']) :?>
 	<div class="block">
 		<h3><?php __('Actions');?></h3>
 		<?php
