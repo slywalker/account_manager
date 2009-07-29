@@ -3,10 +3,10 @@
 		<?php
 		echo $form->create('User', array('action' => 'forgot_password'));
 		echo $form->inputs(array(
-			'legend' => __('Forgot Password', true),
-			'email',
+			'legend' => __d('account_manager', 'Forgot Password', true),
+			'email' => array('label' => __d('account_manager', 'Email', true)),
 		));
-		echo $form->end(__('Submit', true));
+		echo $form->end(__d('account_manager', 'Submit', true));
 		?>
 	</div>
 </div>

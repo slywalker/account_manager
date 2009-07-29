@@ -14,7 +14,7 @@ class AccountManagerAppModel extends AppModel {
 	// Validation message i18n
 	public function invalidate($field, $value = true){
 		parent::invalidate($field, $value);
-		$this->validationErrors[$field] = __($value, true);
+		$this->validationErrors[$field] = __d('account_manager', $value, true);
 	}
 
 }

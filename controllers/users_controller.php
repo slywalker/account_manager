@@ -28,7 +28,7 @@ class UsersController extends AccountManagerAppController {
 		$foreignKey = false;
 		$user = $this->User->find('first', compact('conditions', 'foreignKey'));
 		if (!$user) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
 			$this->redirect(array('action'=>'logout'));
 		}
 		$this->set(compact('user'));
@@ -36,7 +36,7 @@ class UsersController extends AccountManagerAppController {
 
 	public function admin_view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
@@ -46,25 +46,25 @@ class UsersController extends AccountManagerAppController {
 		if ($this->data) {
 			$this->User->create();
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true), 'default', array('class' => 'message success'));
+				$this->Session->setFlash(__d('account_manager', 'The User has been saved', true), 'default', array('class' => 'message success'));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__d('account_manager', 'The User could not be saved. Please, try again.', true));
 			}
 		}
 	}
 
 	public function admin_edit($id = null) {
 		if (!$id && !$this->data) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->data) {
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true), 'default', array('class' => 'message success'));
+				$this->Session->setFlash(__d('account_manager', 'The User has been saved', true), 'default', array('class' => 'message success'));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__d('account_manager', 'The User could not be saved. Please, try again.', true));
 			}
 		} else {
 			$this->data = $this->User->read(null, $id);
@@ -73,7 +73,7 @@ class UsersController extends AccountManagerAppController {
 
 	public function delete() {
 		if ($this->User->delete($this->Auth->user('id'))) {
-			$this->Session->setFlash(__('User deleted', true), 'default', array('class' => 'message success'));
+			$this->Session->setFlash(__d('account_manager', 'User deleted', true), 'default', array('class' => 'message success'));
 			$this->redirect(array('action'=>'logout'));
 		}
 		$this->redirect(array('action'=>'view'));
@@ -83,12 +83,12 @@ class UsersController extends AccountManagerAppController {
 		if (!$id) {
 			if (isset($this->data['delete'])) {
 				if ($this->User->deleteAll(array('User.id' => $this->data['delete']))) {
-					$this->Session->setFlash(__('User deleted', true), 'default', array('class' => 'message success'));
+					$this->Session->setFlash(__d('account_manager', 'User deleted', true), 'default', array('class' => 'message success'));
 				}
 			}
 		} else {
 			if ($this->User->delete($id)) {
-				$this->Session->setFlash(__('User deleted', true), 'default', array('class' => 'message success'));
+				$this->Session->setFlash(__d('account_manager', 'User deleted', true), 'default', array('class' => 'message success'));
 			}
 		}
 		$this->redirect(array('action'=>'index'));
@@ -110,12 +110,12 @@ class UsersController extends AccountManagerAppController {
 				$this->set(compact('user'));
 				if ($this->_send($user['User']['email'], 'Confirm Register', 'confirm_register')) {
 					$this->User->commit();
-					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->setFlash(__d('account_manager', 'A confirm mail has been sent', true), 'default', array('class' => 'message success'));
 					$this->redirect(array('action'=>'login'));
 				}
 			}
 			$this->User->rollback();
-			$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+			$this->Session->setFlash(__d('account_manager', 'The User could not be saved. Please, try again.', true));
 		}
 	}
 
@@ -127,30 +127,30 @@ class UsersController extends AccountManagerAppController {
 				$this->set(compact('user'));
 				if ($this->_send($user['User']['email'], 'Change Password', 'forgot_password')) {
 					$this->User->commit();
-					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->setFlash(__d('account_manager', 'A confirm mail has been sent', true), 'default', array('class' => 'message success'));
 					$this->redirect(array('action'=>'logout'));
 				}
 			}
 			$this->User->rollback();
-			$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+			$this->Session->setFlash(__d('account_manager', 'A confirm mail has been sent', true), 'default', array('class' => 'message success'));
 			$this->redirect(array('action'=>'logout'));
 		}
 	}
 
 	public function confirm_register($emailCheckcode = null) {
 		if ($this->User->confirmRegister($emailCheckcode)) {
-			$this->Session->setFlash(__('Confirm has been success', true), 'default', array('class' => 'message success'));
+			$this->Session->setFlash(__d('account_manager', 'Confirm has been success', true), 'default', array('class' => 'message success'));
 		} else {
-			$this->Session->setFlash(__('Invalid URL', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid URL', true));
 		}
 		$this->redirect(array('action'=>'logout'));
 	}
 
 	public function confirm_email($emailCheckcode = null) {
 		if ($this->User->confirmEmail($emailCheckcode)) {
-			$this->Session->setFlash(__('Confirm has been success', true), 'default', array('class' => 'message success'));
+			$this->Session->setFlash(__d('account_manager', 'Confirm has been success', true), 'default', array('class' => 'message success'));
 		} else {
-			$this->Session->setFlash(__('Invalid URL', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid URL', true));
 		}
 		$this->redirect(array('action'=>'logout'));
 	}
@@ -159,7 +159,7 @@ class UsersController extends AccountManagerAppController {
 	public function change_email() {
 		$user = $this->User->find('first');
 		if (!$user && !$this->data) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
 			$this->redirect(array('action'=>'logout'));
 		}
 		if ($this->data) {
@@ -169,12 +169,12 @@ class UsersController extends AccountManagerAppController {
 				$this->set(compact('user'));
 				if ($this->_send($user['User']['email'], 'Confirm Email', 'confirm_email')) {
 					$this->User->commit();
-					$this->Session->setFlash(__('A confirm mail has been sent', true), 'default', array('class' => 'message success'));
+					$this->Session->setFlash(__d('account_manager', 'A confirm mail has been sent', true), 'default', array('class' => 'message success'));
 					$this->redirect(array('action'=>'logout'));
 				}
 			}
 			$this->User->rollback();
-			$this->Session->setFlash(__('The Email could not be changed. Please, try again.', true));
+			$this->Session->setFlash(__d('account_manager', 'The Email could not be changed. Please, try again.', true));
 		} else {
 			$this->data = $user;
 		}
@@ -187,7 +187,7 @@ class UsersController extends AccountManagerAppController {
 			$id = $this->User->field('id', array('password_checkcode' => $id));
 		}
 		if (!$id && !$this->data) {
-			$this->Session->setFlash(__('Invalid URL', true));
+			$this->Session->setFlash(__d('account_manager', 'Invalid URL', true));
 			$this->redirect(array('action'=>'logout'));
 		}
 		if ($this->data) {
@@ -195,11 +195,11 @@ class UsersController extends AccountManagerAppController {
 			$this->User->begin();
 			if ($user = $this->User->changePassword($this->data)) {
 				$this->User->commit();
-				$this->Session->setFlash(__('The Password has been changed', true), 'default', array('class' => 'message success'));
+				$this->Session->setFlash(__d('account_manager', 'The Password has been changed', true), 'default', array('class' => 'message success'));
 				$this->redirect(array('action'=>'logout'));
 			}
 			$this->User->rollback();
-			$this->Session->setFlash(__('The Password could not be changed. Please, try again.', true));
+			$this->Session->setFlash(__d('account_manager', 'The Password could not be changed. Please, try again.', true));
 		} else {
 			$this->data = $this->User->read(null, $id);
 		}

@@ -4,21 +4,21 @@
 		$session->flash('auth');
 		echo $form->create('User', array('action' => 'login'));
 		echo $form->inputs(array(
-			'legend' => __('Login', true),
-			'email',
-			'password',
+			'legend' => __d('account_manager', 'Login', true),
+			'email' => array('label' => __d('account_manager', 'Email', true)),
+			'password' => array('label' => __d('account_manager', 'Password', true)),
 		));
-		echo $form->end(__('Submit', true));
+		echo $form->end(__d('account_manager', 'Submit', true));
 		?>
 	</div>
 </div>
 <div id="sidebar">
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] = $html->link(__('Register User', true), array('action' => 'register'));
-		$li[] = $html->link(__('Forgot Password', true), array('action' => 'forgot_password'));
+		$li[] = $html->link(__d('account_manager', 'Register User', true), array('action' => 'register'));
+		$li[] = $html->link(__d('account_manager', 'Forgot Password', true), array('action' => 'forgot_password'));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

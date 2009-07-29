@@ -1,23 +1,23 @@
 <div id="main">
 	<?php echo $form->create(null, array('action' => 'delete'));?>
 	<div class="users index">
-		<h2><?php __('Users');?></h2>
+		<h2><?php __d('account_manager', 'Users');?></h2>
 		<p>
 			<?php
 			echo $paginator->counter(array(
-				'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+				'format' => __d('account_manager', 'Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 			));
 ?>		</p>
 		<p><?php //echo $appPaginator->limit();?></p>
 		<table>
 			<?php
 			$th = array();
-			$th[] = __('Del', true);
-			$th[] = $paginator->sort('username');
-			$th[] = $paginator->sort('email');
-			$th[] = $paginator->sort('disabled');
-			$th[] = $paginator->sort('created');
-			$th[] = __('Actions', true);
+			$th[] = __d('account_manager', 'Del', true);
+			$th[] = $paginator->sort(__d('account_manager', 'Username', true), 'username');
+			$th[] = $paginator->sort(__d('account_manager', 'Email', true), 'email');
+			$th[] = $paginator->sort(__d('account_manager', 'Disable', true), 'disabled');
+			$th[] = $paginator->sort(__d('account_manager', 'Created', true), 'created');
+			$th[] = __d('account_manager', 'Actions', true);
 			echo $html->tableHeaders($th);
 			foreach ($users as $key => $user) {
 				$td = array();
@@ -27,9 +27,9 @@
 				$td[] = h($user['User']['disabled']);
 				$td[] = h($user['User']['created']);
 				$actions = array();
-				$actions[] = $html->link(__('View', true), array('action' => 'view', $user['User']['id']));
-				$actions[] = $html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']));
-				$actions[] = $html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete?', true));
+				$actions[] = $html->link(__d('account_manager', 'View', true), array('action' => 'view', $user['User']['id']));
+				$actions[] = $html->link(__d('account_manager', 'Edit', true), array('action' => 'edit', $user['User']['id']));
+				$actions[] = $html->link(__d('account_manager', 'Delete', true), array('action' => 'delete', $user['User']['id']), null, __d('account_manager', 'Are you sure you want to delete?', true));
 				$td[] = array(implode('&nbsp;|&nbsp;', $actions), array('class' => 'actions'));
 				echo $html->tableCells($td, array('class' => 'altrow'));
 			}
@@ -38,12 +38,12 @@
 	</div>
 	<div class="actions-bar">
 		<div class="actions">
-			<?php echo $form->submit(__('Delete Selected', true), array('div' => false));?>
+			<?php echo $form->submit(__d('account_manager', 'Delete Selected', true), array('div' => false));?>
 		</div>
 		<div class="pagination">
-			<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+			<?php echo $paginator->prev('<< '.__d('account_manager', 'previous', true), array(), null, array('class'=>'disabled'));?>
 			<?php echo $paginator->numbers(array('separator' => null));?>
-			<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class' => 'disabled'));?>
+			<?php echo $paginator->next(__d('account_manager', 'next', true).' >>', array(), null, array('class' => 'disabled'));?>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -51,10 +51,10 @@
 </div>
 <div id="sidebar">
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] = $html->link(__('New User', true), array('action' => 'add'));
+		$li[] = $html->link(__d('account_manager', 'New User', true), array('action' => 'add'));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

@@ -3,14 +3,14 @@
 		<?php
 		echo $form->create('User', array('action' => 'register'));
 		echo $form->inputs(array(
-			'legend' => __('Register User', true),
-			'username',
-			'email',
-			'email_confirm' => array('label' => __('Email Confirm', true)),
-			'password',
-			'password_confirm' => array('type' => 'password', 'label' => __('Password Confirm', true)),
+			'legend' => __d('account_manager', 'Register User', true),
+			'username' => array('label' => __d('account_manager', 'Username', true)),
+			'email' => array('label' => __d('account_manager', 'Email', true)),
+			'email_confirm' => array('label' => __d('account_manager', 'Email Confirm', true)),
+			'password' => array('label' => __d('account_manager', 'Password', true)),
+			'password_confirm' => array('type' => 'password', 'label' => __d('account_manager', 'Password Confirm', true)),
 		));
-		echo $form->end(__('Submit', true));
+		echo $form->end(__d('account_manager', 'Submit', true));
 		?>
 	</div>
 </div>

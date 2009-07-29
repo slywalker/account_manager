@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-07-29 14:38+0900\n"
+"POT-Creation-Date: 2009-07-29 17:39+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -57,6 +57,33 @@ msgstr ""
 
 #: /views/users/admin_add.ctp:6
 msgid "Add User"
+msgstr ""
+
+#: /views/users/admin_add.ctp:7
+#: /views/users/admin_edit.ctp:8
+#: /views/users/admin_index.ctp:16
+#: /views/users/register.ctp:7
+msgid "Username"
+msgstr ""
+
+#: /views/users/admin_add.ctp:8
+#: /views/users/admin_edit.ctp:9
+#: /views/users/admin_index.ctp:17
+#: /views/users/admin_view.ctp:9
+#: /views/users/change_email.ctp:8
+#: /views/users/forgot_password.ctp:7
+#: /views/users/login.ctp:8
+#: /views/users/register.ctp:8
+#: /views/users/view.ctp:10
+msgid "Email"
+msgstr ""
+
+#: /views/users/admin_add.ctp:9
+#: /views/users/admin_edit.ctp:10
+#: /views/users/change_password.ctp:8
+#: /views/users/login.ctp:9
+#: /views/users/register.ctp:10
+msgid "Password"
 msgstr ""
 
 #: /views/users/admin_add.ctp:11
@@ -115,6 +142,15 @@ msgstr ""
 msgid "Del"
 msgstr ""
 
+#: /views/users/admin_index.ctp:18
+msgid "Disable"
+msgstr ""
+
+#: /views/users/admin_index.ctp:19
+#: /views/users/admin_view.ctp:16
+msgid "Created"
+msgstr ""
+
 #: /views/users/admin_index.ctp:30
 msgid "View"
 msgstr ""
@@ -154,11 +190,6 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: /views/users/admin_view.ctp:9
-#: /views/users/view.ctp:10
-msgid "Email"
-msgstr ""
-
 #: /views/users/admin_view.ctp:10
 msgid "Expires"
 msgstr ""
@@ -183,10 +214,6 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
-#: /views/users/admin_view.ctp:16
-msgid "Created"
-msgstr ""
-
 #: /views/users/admin_view.ctp:35
 #: /views/users/view.ctp:32
 msgid "Delete User"
@@ -197,6 +224,11 @@ msgstr ""
 msgid "Change Email"
 msgstr ""
 
+#: /views/users/change_email.ctp:9
+#: /views/users/register.ctp:9
+msgid "Email Confirm"
+msgstr ""
+
 #: /views/users/change_email.ctp:20
 #: /views/users/change_password.ctp:20
 msgid "View User"
@@ -205,6 +237,11 @@ msgstr ""
 #: /views/users/change_password.ctp:6
 #: /views/users/view.ctp:31
 msgid "Change Password"
+msgstr ""
+
+#: /views/users/change_password.ctp:9
+#: /views/users/register.ctp:11
+msgid "Password Confirm"
 msgstr ""
 
 #: /views/users/forgot_password.ctp:6
@@ -219,14 +256,6 @@ msgstr ""
 #: /views/users/login.ctp:20
 #: /views/users/register.ctp:6
 msgid "Register User"
-msgstr ""
-
-#: /views/users/register.ctp:9
-msgid "Email Confirm"
-msgstr ""
-
-#: /views/users/register.ctp:11
-msgid "Password Confirm"
 msgstr ""
 
 #: /views/users/view.ctp:7

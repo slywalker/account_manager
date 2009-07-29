@@ -3,21 +3,21 @@
 		<?php
 		echo $form->create('User');
 		echo $form->inputs(array(
-			'legend' => __('Add User', true),
-			'username',
-			'email',
-			'password',
+			'legend' => __d('account_manager', 'Add User', true),
+			'username' => array('label' => __d('account_manager', 'Username', true)),
+			'email' => array('label' => __d('account_manager', 'Email', true)),
+			'password' => array('label' => __d('account_manager', 'Password', true)),
 		));
-		echo $form->end(__('Submit', true));
+		echo $form->end(__d('account_manager', 'Submit', true));
 		?>
 	</div>
 </div>
 <div id="sidebar">
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] = $html->link(__('List Users', true), array('action' => 'index'));
+		$li[] = $html->link(__d('account_manager', 'List Users', true), array('action' => 'index'));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

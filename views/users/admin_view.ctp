@@ -1,19 +1,19 @@
 <div id="main">
 	<div class="users view">
-		<h2><?php  __('User');?></h2>
+		<h2><?php  __d('account_manager', 'User');?></h2>
 		<dl>
 			<?php
 			$lists = array();
-			$lists[] = array('dt' => __('Id', true), 'dd' => h($user['User']['id']));
-			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['username']));
-			$lists[] = array('dt' => __('Email', true), 'dd' => h($user['User']['email']));
-			$lists[] = array('dt' => __('Expires', true), 'dd' => h($user['User']['expires']));
-			$lists[] = array('dt' => __('Email Checkcode', true), 'dd' => h($user['User']['email_checkcode']));
-			$lists[] = array('dt' => __('Password Checkcode', true), 'dd' => h($user['User']['password_checkcode']));
-			$lists[] = array('dt' => __('Disabled', true), 'dd' => h($user['User']['disabled']));
-			$lists[] = array('dt' => __('Email Tmp', true), 'dd' => h($user['User']['email_tmp']));
-			$lists[] = array('dt' => __('Modified', true), 'dd' => h($user['User']['modified']));
-			$lists[] = array('dt' => __('Created', true), 'dd' => h($user['User']['created']));
+			$lists[] = array('dt' => __d('account_manager', 'Id', true), 'dd' => h($user['User']['id']));
+			$lists[] = array('dt' => __d('account_manager', 'Name', true), 'dd' => h($user['User']['username']));
+			$lists[] = array('dt' => __d('account_manager', 'Email', true), 'dd' => h($user['User']['email']));
+			$lists[] = array('dt' => __d('account_manager', 'Expires', true), 'dd' => h($user['User']['expires']));
+			$lists[] = array('dt' => __d('account_manager', 'Email Checkcode', true), 'dd' => h($user['User']['email_checkcode']));
+			$lists[] = array('dt' => __d('account_manager', 'Password Checkcode', true), 'dd' => h($user['User']['password_checkcode']));
+			$lists[] = array('dt' => __d('account_manager', 'Disabled', true), 'dd' => h($user['User']['disabled']));
+			$lists[] = array('dt' => __d('account_manager', 'Email Tmp', true), 'dd' => h($user['User']['email_tmp']));
+			$lists[] = array('dt' => __d('account_manager', 'Modified', true), 'dd' => h($user['User']['modified']));
+			$lists[] = array('dt' => __d('account_manager', 'Created', true), 'dd' => h($user['User']['created']));
 			foreach ($lists as $key => $list) {
 				$class = array();
 				if ($key % 2 == 0) {
@@ -28,13 +28,13 @@
 </div>
 <div id="sidebar">
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] = $html->link(__('Edit User', true), array('action' => 'edit', $user['User']['id']));
-		$li[] = $html->link(__('Delete User', true), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete?', true));
-		$li[] = $html->link(__('List Users', true), array('action' => 'index'));
-		$li[] = $html->link(__('New User', true), array('action' => 'add'));
+		$li[] = $html->link(__d('account_manager', 'Edit User', true), array('action' => 'edit', $user['User']['id']));
+		$li[] = $html->link(__d('account_manager', 'Delete User', true), array('action' => 'delete', $user['User']['id']), null, __d('account_manager', 'Are you sure you want to delete?', true));
+		$li[] = $html->link(__d('account_manager', 'List Users', true), array('action' => 'index'));
+		$li[] = $html->link(__d('account_manager', 'New User', true), array('action' => 'add'));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

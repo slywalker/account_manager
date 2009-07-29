@@ -1,13 +1,13 @@
 <div id="main">
 	<div class="users view">
-		<h2><?php  __('User');?></h2>
+		<h2><?php  __d('account_manager', 'User');?></h2>
 		<dl>
 			<?php
 			$lists = array();
-			$lists[] = array('dt' => __('Icon', true), 'dd' => $html->image($gravatar->url($user['User']['email'], 50), array('url' => 'http://www.gravatar.com/')));
-			$lists[] = array('dt' => __('Name', true), 'dd' => h($user['User']['username']));
+			$lists[] = array('dt' => __d('account_manager', 'Icon', true), 'dd' => $html->image($gravatar->url($user['User']['email'], 50), array('url' => 'http://www.gravatar.com/')));
+			$lists[] = array('dt' => __d('account_manager', 'Name', true), 'dd' => h($user['User']['username']));
 			if ($session->read('Auth.User.id') === $user['User']['id']) {
-				$lists[] = array('dt' => __('Email', true), 'dd' => h($user['User']['email']));
+				$lists[] = array('dt' => __d('account_manager', 'Email', true), 'dd' => h($user['User']['email']));
 			}
 			foreach ($lists as $key => $list) {
 				$class = array();
@@ -24,12 +24,12 @@
 <div id="sidebar">
 	<?php if ($session->read('Auth.User.id') === $user['User']['id']) :?>
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] =$html->link(__('Change Email', true), array('action' => 'change_email'));
-		$li[] =$html->link(__('Change Password', true), array('action' => 'change_password'));
-		$li[] = $html->link(__('Delete User', true), array('action' => 'delete'), null, __('Are you sure you want to delete?', true));
+		$li[] =$html->link(__d('account_manager', 'Change Email', true), array('action' => 'change_email'));
+		$li[] =$html->link(__d('account_manager', 'Change Password', true), array('action' => 'change_password'));
+		$li[] = $html->link(__d('account_manager', 'Delete User', true), array('action' => 'delete'), null, __d('account_manager', 'Are you sure you want to delete?', true));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

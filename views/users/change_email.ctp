@@ -3,21 +3,21 @@
 		<?php
 		echo $form->create('User', array('action' => 'change_email'));
 		echo $form->inputs(array(
-			'legend' => __('Change Email', true),
+			'legend' => __d('account_manager', 'Change Email', true),
 			'id',
-			'email',
-			'email_confirm',
+			'email' => array('label' => __d('account_manager', 'Email', true)),
+			'email_confirm' => array('label' => __d('account_manager', 'Email Confirm', true)),
 		));
-		echo $form->end(__('Submit', true));
+		echo $form->end(__d('account_manager', 'Submit', true));
 		?>
 	</div>
 </div>
 <div id="sidebar">
 	<div class="block">
-		<h3><?php __('Actions');?></h3>
+		<h3><?php __d('account_manager', 'Actions');?></h3>
 		<?php
 		$li = array();
-		$li[] =$html->link(__('View User', true), array('action' => 'view', $form->value('User.id')));
+		$li[] =$html->link(__d('account_manager', 'View User', true), array('action' => 'view', $form->value('User.id')));
 		echo $html->nestedList($li, array('class'=>'navigation'));
 		?>
 	</div>

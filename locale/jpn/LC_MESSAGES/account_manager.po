@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: account_manager\n"
-"POT-Creation-Date: 2009-07-29 14:38+0900\n"
+"POT-Creation-Date: 2009-07-29 17:39+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yasuo Harada <slywalker.net@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -55,6 +55,33 @@ msgstr "パスワードを変更できませんでした。再度試してくだ
 #: /views/users/admin_add.ctp:6
 msgid "Add User"
 msgstr "ユーザの追加"
+
+#: /views/users/admin_add.ctp:7
+#: /views/users/admin_edit.ctp:8
+#: /views/users/admin_index.ctp:16
+#: /views/users/register.ctp:7
+msgid "Username"
+msgstr "ユーザアカウント"
+
+#: /views/users/admin_add.ctp:8
+#: /views/users/admin_edit.ctp:9
+#: /views/users/admin_index.ctp:17
+#: /views/users/admin_view.ctp:9
+#: /views/users/change_email.ctp:8
+#: /views/users/forgot_password.ctp:7
+#: /views/users/login.ctp:8
+#: /views/users/register.ctp:8
+#: /views/users/view.ctp:10
+msgid "Email"
+msgstr "メールアドレス"
+
+#: /views/users/admin_add.ctp:9
+#: /views/users/admin_edit.ctp:10
+#: /views/users/change_password.ctp:8
+#: /views/users/login.ctp:9
+#: /views/users/register.ctp:10
+msgid "Password"
+msgstr "パスワード"
 
 #: /views/users/admin_add.ctp:11
 #: /views/users/admin_edit.ctp:12
@@ -112,6 +139,15 @@ msgstr "Page %page% of %pages%, showing %current% records out of %count% total, 
 msgid "Del"
 msgstr "削除"
 
+#: /views/users/admin_index.ctp:18
+msgid "Disable"
+msgstr "無効"
+
+#: /views/users/admin_index.ctp:19
+#: /views/users/admin_view.ctp:16
+msgid "Created"
+msgstr "登録日時"
+
 #: /views/users/admin_index.ctp:30
 msgid "View"
 msgstr "表示"
@@ -151,11 +187,6 @@ msgstr "Id"
 msgid "Name"
 msgstr "名前"
 
-#: /views/users/admin_view.ctp:9
-#: /views/users/view.ctp:10
-msgid "Email"
-msgstr "メールアドレス"
-
 #: /views/users/admin_view.ctp:10
 msgid "Expires"
 msgstr "有効期限"
@@ -180,10 +211,6 @@ msgstr "Email Tmp"
 msgid "Modified"
 msgstr "更新日時"
 
-#: /views/users/admin_view.ctp:16
-msgid "Created"
-msgstr "登録日時"
-
 #: /views/users/admin_view.ctp:35
 #: /views/users/view.ctp:32
 msgid "Delete User"
@@ -194,6 +221,11 @@ msgstr "ユーザの削除"
 msgid "Change Email"
 msgstr "メールアドレスの変更"
 
+#: /views/users/change_email.ctp:9
+#: /views/users/register.ctp:9
+msgid "Email Confirm"
+msgstr "メールアドレス 確認"
+
 #: /views/users/change_email.ctp:20
 #: /views/users/change_password.ctp:20
 msgid "View User"
@@ -203,6 +235,11 @@ msgstr "ユーザの表示"
 #: /views/users/view.ctp:31
 msgid "Change Password"
 msgstr "パスワードの変更"
+
+#: /views/users/change_password.ctp:9
+#: /views/users/register.ctp:11
+msgid "Password Confirm"
+msgstr "パスワード 確認"
 
 #: /views/users/forgot_password.ctp:6
 #: /views/users/login.ctp:21
@@ -217,14 +254,6 @@ msgstr "ログイン"
 #: /views/users/register.ctp:6
 msgid "Register User"
 msgstr "ユーザの登録"
-
-#: /views/users/register.ctp:9
-msgid "Email Confirm"
-msgstr "メールアドレス 確認"
-
-#: /views/users/register.ctp:11
-msgid "Password Confirm"
-msgstr "パスワード 確認"
 
 #: /views/users/view.ctp:7
 msgid "Icon"
