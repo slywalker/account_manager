@@ -1,7 +1,7 @@
 
 cake schema run create users -path plugins/account_manager/config/sql
 
-exsample AppController
+Exsample AppController
 
 class AppController extends Controller {
 	public $components = array(
@@ -11,10 +11,19 @@ class AppController extends Controller {
 	);
 }
 
-exsample AppModel
+Exsample AppModel
 
 class AppModel extends Model {
 	public $actsAs = array(
 		'AccountManager.ForeignKey',
 	);
 }
+
+If you use SMTP for sending mail.
+Copy plugins/account_manager/config/smtp.php.default app/config/smtp.php
+Edit app/config/smtp.php.
+
+If you use admin routing. Exsample index users
+Copy plugins/account_manager/config/basic.php.default app/config/basic.php
+Edit app/config/basic.php.
+You can use BasicAuth.
