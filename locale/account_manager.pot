@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-07-26 21:19+0900\n"
+"POT-Creation-Date: 2009-07-29 14:38+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,43 +15,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/users_controller.php:19;27;47;150
+#: /controllers/users_controller.php:31;39;59;162
 msgid "Invalid User"
 msgstr ""
 
-#: /controllers/users_controller.php:37;52
+#: /controllers/users_controller.php:49;64
 msgid "The User has been saved"
 msgstr ""
 
-#: /controllers/users_controller.php:40;55;106
+#: /controllers/users_controller.php:52;67;118
 msgid "The User could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/users_controller.php:64;74;79
+#: /controllers/users_controller.php:76;86;91
 msgid "User deleted"
 msgstr ""
 
-#: /controllers/users_controller.php:101;118;123;160
+#: /controllers/users_controller.php:113;130;135;172
 msgid "A confirm mail has been sent"
 msgstr ""
 
-#: /controllers/users_controller.php:130;139
+#: /controllers/users_controller.php:142;151
 msgid "Confirm has been success"
 msgstr ""
 
-#: /controllers/users_controller.php:132;141;178
+#: /controllers/users_controller.php:144;153;190
 msgid "Invalid URL"
 msgstr ""
 
-#: /controllers/users_controller.php:165
+#: /controllers/users_controller.php:177
 msgid "The Email could not be changed. Please, try again."
 msgstr ""
 
-#: /controllers/users_controller.php:186
+#: /controllers/users_controller.php:198
 msgid "The Password has been changed"
 msgstr ""
 
-#: /controllers/users_controller.php:190
+#: /controllers/users_controller.php:202
 msgid "The Password could not be changed. Please, try again."
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 #: /views/users/change_email.ctp:17
 #: /views/users/change_password.ctp:17
 #: /views/users/login.ctp:17
-#: /views/users/view.ctp:28
+#: /views/users/view.ctp:27
 msgid "Actions"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 #: /views/users/admin_edit.ctp:21
 #: /views/users/admin_index.ctp:32
 #: /views/users/admin_view.ctp:35
-#: /views/users/view.ctp:33
+#: /views/users/view.ctp:32
 msgid "Are you sure you want to delete?"
 msgstr ""
 
@@ -150,12 +150,12 @@ msgid "Id"
 msgstr ""
 
 #: /views/users/admin_view.ctp:8
-#: /views/users/view.ctp:9
+#: /views/users/view.ctp:8
 msgid "Name"
 msgstr ""
 
 #: /views/users/admin_view.ctp:9
-#: /views/users/view.ctp:11
+#: /views/users/view.ctp:10
 msgid "Email"
 msgstr ""
 
@@ -188,12 +188,12 @@ msgid "Created"
 msgstr ""
 
 #: /views/users/admin_view.ctp:35
-#: /views/users/view.ctp:33
+#: /views/users/view.ctp:32
 msgid "Delete User"
 msgstr ""
 
 #: /views/users/change_email.ctp:6
-#: /views/users/view.ctp:31
+#: /views/users/view.ctp:30
 msgid "Change Email"
 msgstr ""
 
@@ -203,7 +203,7 @@ msgid "View User"
 msgstr ""
 
 #: /views/users/change_password.ctp:6
-#: /views/users/view.ctp:32
+#: /views/users/view.ctp:31
 msgid "Change Password"
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Password Confirm"
 msgstr ""
 
-#: /views/users/view.ctp:8
+#: /views/users/view.ctp:7
 msgid "Icon"
 msgstr ""
 
