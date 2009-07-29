@@ -10,7 +10,7 @@ class UsersController extends AccountManagerAppController {
 		if (isset($this->Security)) {
 			$this->Security->disabledFields = array('hash_password');
 		}
-		if (isset($this->data['User']['password'])) {
+		if (!empty($this->data['User']['password'])) {
 			$this->data['User']['hash_password'] = $this->data['User']['password'];
 		}
 	}
