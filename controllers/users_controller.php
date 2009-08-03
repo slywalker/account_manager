@@ -7,6 +7,9 @@ class UsersController extends AccountManagerAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->allow('*');
+		$this->Auth->deny('delete');
+		
 		if (isset($this->Security)) {
 			$this->Security->disabledFields = array('hash_password');
 		}
