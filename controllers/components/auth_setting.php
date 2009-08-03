@@ -1,11 +1,12 @@
 <?php
 /*
-*  このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの前!!
+*  このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの後ろ!!
 */
 class AuthSettingComponent extends Object {
+	private $useAdminRouting = false;
 
-	public function startup(&$controller) {
-		if (!empty($controller->params[Configure::read('Routing.admin')])) {
+	public function initialize(&$controller) {
+		if (Configure::read('Routing.admin') && !empty($controller->params[Configure::read('Routing.admin')])) {
 			$this->__adminSettings($controller);
 		} else {
 			$this->__authSettings($controller);
