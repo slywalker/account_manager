@@ -1,6 +1,7 @@
 <?php
 /*
 *  このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの後ろ!!
+*  This Component must be called after AuthComponent, SecurityComponent !!
 */
 class AuthSettingComponent extends Object {
 	private $useAdminRouting = false;
@@ -19,8 +20,8 @@ class AuthSettingComponent extends Object {
 			$controller->Auth->fields = array('username' => 'email', 'password' => 'hash_password');
 			$controller->Auth->userScope = array('User.disabled' => 0);
 			$controller->Auth->loginAction = array(Configure::read('Routing.admin') => false, 'plugin' => 'account_manager', 'controller' => 'users', 'action' => 'login');
-			$controller->Auth->allow('*');
-			$controller->Auth->deny('add', 'edit', 'delete');
+			//$controller->Auth->allow('*');
+			//$controller->Auth->deny('add', 'edit', 'delete');
 		}
 	}
 
