@@ -5,9 +5,9 @@ Exsample AppController
 
 class AppController extends Controller {
 	public $components = array(
-		'AccountManager.AuthSetting',
 		'Security',
 		'Auth',
+		'AccountManager.AuthSetting',
 	);
 }
 
