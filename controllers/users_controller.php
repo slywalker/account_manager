@@ -15,7 +15,7 @@ class UsersController extends AccountManagerAppController {
 		}
 		if (!empty($this->data['User']['password'])) {
 			$this->data['User']['hash_password'] = $this->data['User']['password'];
-			if (!strpos($this->data['User']['email'], '@')) {
+			if ($this->action === 'login' && !strpos($this->data['User']['email'], '@')) {
 				$this->Auth->fields['username'] = 'username';
 				$this->data['User']['username'] = $this->data['User']['email'];
 			}
