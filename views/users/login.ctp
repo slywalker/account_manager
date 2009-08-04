@@ -5,7 +5,7 @@
 		echo $form->create('User', array('action' => 'login'));
 		echo $form->inputs(array(
 			'legend' => __d('account_manager', 'Login', true),
-			'email' => array('label' => __d('account_manager', 'Email', true)),
+			'email' => array('label' => __d('account_manager', 'Email or Username', true)),
 			'password' => array('label' => __d('account_manager', 'Password', true)),
 		));
 		echo $form->end(__d('account_manager', 'Submit', true));

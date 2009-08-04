@@ -11,10 +11,14 @@ class UsersController extends AccountManagerAppController {
 		$this->Auth->deny('delete');
 		
 		if (isset($this->Security)) {
-			$this->Security->disabledFields = array('hash_password');
+			$this->Security->disabledFields = array('hash_password', 'username');
 		}
 		if (!empty($this->data['User']['password'])) {
 			$this->data['User']['hash_password'] = $this->data['User']['password'];
+			if (!strpos($this->data['User']['email'], '@')) {
+				$this->Auth->fields['username'] = 'username';
+				$this->data['User']['username'] = $this->data['User']['email'];
+			}
 		}
 	}
 

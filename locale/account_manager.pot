@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-07-29 17:39+0900\n"
+"POT-Creation-Date: 2009-08-04 14:51+0900\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,43 +15,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/users_controller.php:31;39;59;162
+#: /controllers/users_controller.php:38;46;66;169
 msgid "Invalid User"
 msgstr ""
 
-#: /controllers/users_controller.php:49;64
+#: /controllers/users_controller.php:56;71
 msgid "The User has been saved"
 msgstr ""
 
-#: /controllers/users_controller.php:52;67;118
+#: /controllers/users_controller.php:59;74;125
 msgid "The User could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/users_controller.php:76;86;91
+#: /controllers/users_controller.php:83;93;98
 msgid "User deleted"
 msgstr ""
 
-#: /controllers/users_controller.php:113;130;135;172
+#: /controllers/users_controller.php:120;137;142;179
 msgid "A confirm mail has been sent"
 msgstr ""
 
-#: /controllers/users_controller.php:142;151
+#: /controllers/users_controller.php:149;158
 msgid "Confirm has been success"
 msgstr ""
 
-#: /controllers/users_controller.php:144;153;190
+#: /controllers/users_controller.php:151;160;197
 msgid "Invalid URL"
 msgstr ""
 
-#: /controllers/users_controller.php:177
+#: /controllers/users_controller.php:184
 msgid "The Email could not be changed. Please, try again."
 msgstr ""
 
-#: /controllers/users_controller.php:198
+#: /controllers/users_controller.php:205
 msgid "The Password has been changed"
 msgstr ""
 
-#: /controllers/users_controller.php:202
+#: /controllers/users_controller.php:209
 msgid "The Password could not be changed. Please, try again."
 msgstr ""
 
@@ -72,7 +72,6 @@ msgstr ""
 #: /views/users/admin_view.ctp:9
 #: /views/users/change_email.ctp:8
 #: /views/users/forgot_password.ctp:7
-#: /views/users/login.ctp:8
 #: /views/users/register.ctp:8
 #: /views/users/view.ctp:10
 msgid "Email"
@@ -251,6 +250,10 @@ msgstr ""
 
 #: /views/users/login.ctp:7
 msgid "Login"
+msgstr ""
+
+#: /views/users/login.ctp:8
+msgid "Email or Username"
 msgstr ""
 
 #: /views/users/login.ctp:20
