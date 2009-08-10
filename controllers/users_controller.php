@@ -101,6 +101,10 @@ class UsersController extends AccountManagerAppController {
 	}
 
 	public function login() {
+		// 意図しない削除防止
+		if ($this->Session->check('Auth.redirect') && strpos($this->Session->read('Auth.redirect'), '/delete') !== false) {
+			$this->Session->write('Auth.redirect', str_replace('/delete', '/view', $this->Session->read('Auth.redirect')));
+		}
 	}
 
 	public function logout() {
