@@ -1,7 +1,6 @@
 <?php
 class UsersController extends AccountManagerAppController {
 	public $name = 'Users';
-	public $uses = array('AccountManager.User');
 	public $components = array('AccountManager.Qdmail', 'AccountManager.Qdsmtp');
 	public $helpers = array('Gravatar');
 
@@ -102,7 +101,6 @@ class UsersController extends AccountManagerAppController {
 	}
 
 	public function login() {
-		$this->Session->write('Auth.redirect', '/');
 	}
 
 	public function logout() {
