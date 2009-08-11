@@ -7,8 +7,7 @@
  * 	class AppModel extends Model {
  * 		var $actsAs = array('ForeignKey' => array('modelName' => 'User', 'foreignKey' => 'user_id', 'callback' => 'callbackForeignKey'));
  * 
- * 		function callbackForeignKey()
- * 		{
+ * 		function callbackForeignKey() {
  * 			return Configure::read('User.id');
  * 		}
  * 	}
