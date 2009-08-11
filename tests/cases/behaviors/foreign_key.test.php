@@ -42,6 +42,11 @@ class ForeignKeyBehaviorTest extends CakeTestCase {
 		));
 		$result = $this->Article->save($data);
 		$this->assertIdentical($result['Article']['user_id'], '4a6c5d0c-44d0-4fd5-b099-140c83b789e4');
+		
+		$id = $this->Article->getInsertID();
+		$data['Article']['id'] = $id;
+		$result = $this->Article->save($data);
+		$this->assertTrue(!isset($result['Article']['user_id']));
 
 		// beforeFind
 		$results = $this->Article->find('all');
