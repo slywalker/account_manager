@@ -38,7 +38,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 		if (isset($foreignKey[0])) {
 			$this->settings[$model->name]['foreignKey'] = $foreignKey[0];
 		} else {
-			$this->settings[$model->name]['foreignKey'] = null;
+			$this->settings[$model->name]['foreignKey'] = false;
 		}
 	}
 
@@ -47,7 +47,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 		if (isset($query['foreignKey'])) {
 			$fk = $query['foreignKey'];
 		}
-		if ($model->name === $this->settings[$model->name]['modelName']) {
+		if ($fk && $model->name === $this->settings[$model->name]['modelName']) {
 			$id = $model->{$this->settings[$model->name]['callback']}();
 			if ($id) {
 				$conditions = array($model->name.'.id' => $id);
