@@ -49,6 +49,14 @@ class ForeignKeyBehaviorTest extends CakeTestCase {
 		$this->assertTrue(!isset($result['Article']['user_id']));
 
 		// beforeFind
+		$results = $this->Article->find('all', array('foreignKey' => false));
+		$this->assertIdentical(count($results), 4);
+
+		$this->Article->foreignKey();
+		$results = $this->Article->find('all');
+		$this->assertIdentical(count($results), 4);
+		$this->Article->foreignKey('user_id');
+
 		$results = $this->Article->find('all');
 		$this->assertIdentical(count($results), 1);
 		$id = $results[0]['Article']['id'];
