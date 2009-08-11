@@ -58,7 +58,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 
 	public function beforeValidate(&$model) {
 		$fk = $this->settings[$model->name]['foreignKey'];
-		if ($model->hasField($fk)) {
+		if (!$model->id && $model->hasField($fk)) {
 			$value = $model->{$this->settings[$model->name]['callback']}();
 			if ($value && !isset($model->data[$model->alias][$fk])) {
 				$model->data[$model->alias][$fk] = $value;
