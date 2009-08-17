@@ -1,25 +1,51 @@
 <?php
 /**
- * ForeignKeyBehavior
+ * foreign_key.php
  * 
  * How to use.
  * Ex.
- * 	class AppModel extends Model {
- * 		var $actsAs = array('ForeignKey' => array('modelName' => 'User', 'foreignKey' => 'user_id', 'callback' => 'callbackForeignKey'));
+ * class AppModel extends Model {
+ *     var $actsAs = array(
+ *         'ForeignKey' => array(
+ *             'modelName' => 'User',
+ *             'foreignKey' => 'user_id',
+ *             'callback' => 'callbackForeignKey',
+ *         ),
+ *     );
  * 
- * 		function callbackForeignKey() {
- * 			return Configure::read('User.id');
- * 		}
- * 	}
+ *     function callbackForeignKey() {
+ *         return Configure::read('User.id');
+ *     }
+ * }
  *
- * @package default
+ * @package AccountManager
  * @author Yasuo Harada
+ * @copyright 2009 Slywalker Co,.Ltd.
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @date $LastChangedDate$
+ * @version $Rev$
  */
 App::import('Component', 'Session');
 
+/**
+ * ForeignKeyBehavior
+ **/
 class ForeignKeyBehavior extends ModelBehavior {
+
+	/**
+	 * settings
+	 *
+	 * @var array
+	 */
 	public $settings = array();
 
+	/**
+	 * setup
+	 *
+	 * @param object $model 
+	 * @param array $config 
+	 * @author Yasuo Harada
+	 */
 	public function setup(&$model, $config=array()) {
 		$defalut = array(
 			'modelName' => 'User',
@@ -32,6 +58,12 @@ class ForeignKeyBehavior extends ModelBehavior {
 		$model->Session = new SessionComponent;
 	}
 
+	/**
+	 * foreignKey
+	 *
+	 * @param object $model 
+	 * @author Yasuo Harada
+	 */
 	public function foreignKey(&$model) {
 		$args = func_get_args();
 		$foreignKey = call_user_func_array('am', array_slice($args, 1));
@@ -42,6 +74,14 @@ class ForeignKeyBehavior extends ModelBehavior {
 		}
 	}
 
+	/**
+	 * beforeFind
+	 *
+	 * @param object $model 
+	 * @param array $query 
+	 * @return array
+	 * @author Yasuo Harada
+	 */
 	public function beforeFind(&$model, $query) {
 		$fk = $this->settings[$model->name]['foreignKey'];
 		if (isset($query['foreignKey'])) {
@@ -66,6 +106,13 @@ class ForeignKeyBehavior extends ModelBehavior {
 		return $query;
 	}
 
+	/**
+	 * beforeValidate
+	 *
+	 * @param object $model 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function beforeValidate(&$model) {
 		$fk = $this->settings[$model->name]['foreignKey'];
 		if ($fk && !$model->id && $model->hasField($fk)) {
@@ -81,6 +128,13 @@ class ForeignKeyBehavior extends ModelBehavior {
 		return true;
 	}
 
+	/**
+	 * beforeDelete
+	 *
+	 * @param object $model 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function beforeDelete(&$model) {
 		$fk = $this->settings[$model->name]['foreignKey'];
 		if ($fk && $model->hasField($fk)) {
@@ -99,6 +153,13 @@ class ForeignKeyBehavior extends ModelBehavior {
 		return true;
 	}
 
+	/**
+	 * callbackForeignKey
+	 *
+	 * @param object $model 
+	 * @return integer or string, user_id
+	 * @author Yasuo Harada
+	 */
 	public function callbackForeignKey(&$model) {
 		return $model->Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
 	}

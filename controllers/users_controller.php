@@ -1,4 +1,18 @@
 <?php
+/**
+ * users_controller.php
+ *
+ * @package AccountManager
+ * @author Yasuo Harada
+ * @copyright 2009 Slywalker Co,.Ltd.
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @date $LastChangedDate$
+ * @version $Rev$
+ **/
+
+/**
+ * UsersController
+ **/
 class UsersController extends AccountManagerAppController {
 	public $name = 'Users';
 	public $components = array('AccountManager.Qdmail', 'AccountManager.Qdsmtp');

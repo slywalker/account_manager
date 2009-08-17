@@ -1,8 +1,21 @@
 <?php
-/*
-*  このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの後ろ!!
-*  This Component must be called after AuthComponent, SecurityComponent !!
-*/
+/**
+ * auth_setting.php
+ *
+ * このコンポーネントの呼び出しは、AuthComponent, SecurityComponentの後ろ!!
+ * This Component must be called after AuthComponent, SecurityComponent !!
+ *
+ * @package AccountManager
+ * @author Yasuo Harada
+ * @copyright 2009 Slywalker Co,.Ltd.
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @date $LastChangedDate$
+ * @version $Rev$
+ **/
+
+/**
+ * AuthSettingComponent
+ **/
 class AuthSettingComponent extends Object {
 	private $useAdminRouting = false;
 

@@ -1,7 +1,30 @@
 <?php
+/**
+ * account_manager_app_model.php
+ *
+ * @package AccountManager
+ * @author Yasuo Harada
+ * @copyright 2009 Slywalker Co,.Ltd.
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @date $LastChangedDate$
+ * @version $Rev$
+ **/
+
+/**
+ * AccountManagerAppModel
+ **/
 class AccountManagerAppModel extends AppModel {
 
-	// Custom Validation Rule
+	/**
+	 * checkCompare
+	 * 
+	 * Custom Validation Rule
+	 *
+	 * @param array $data 
+	 * @param string $suffix 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function checkCompare($data, $suffix) {
 		$field = key($data);
 		$value = current($data);
@@ -11,7 +34,16 @@ class AccountManagerAppModel extends AppModel {
 		return true;
 	}
 
-	// Validation message i18n
+	/**
+	 * invalidate
+	 * 
+	 * Validation message i18n
+	 *
+	 * @param string $field 
+	 * @param boolen $value 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function invalidate($field, $value = true){
 		parent::invalidate($field, $value);
 		$this->validationErrors[$field] = __d('account_manager', $value, true);

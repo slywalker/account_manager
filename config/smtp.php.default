@@ -1,4 +1,18 @@
 <?php
+/**
+ * smtp.php.default
+ *
+ * @package AccountManager
+ * @author Yasuo Harada
+ * @copyright 2009 Slywalker Co,.Ltd.
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @date $LastChangedDate$
+ * @version $Rev$
+ **/
+
+/**
+ * SMTP_CONFIG
+ **/
 class SMTP_CONFIG {
 
 	static $default = array(
