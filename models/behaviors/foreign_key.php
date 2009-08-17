@@ -4,19 +4,19 @@
  * 
  * How to use.
  * Ex.
- * class AppModel extends Model {
- *     var $actsAs = array(
- *         'ForeignKey' => array(
- *             'modelName' => 'User',
- *             'foreignKey' => 'user_id',
- *             'callback' => 'callbackForeignKey',
- *         ),
- *     );
+ *	class AppModel extends Model {
+ *		var $actsAs = array(
+ *			'ForeignKey' => array(
+ *				'modelName' => 'User',
+ *				'foreignKey' => 'user_id',
+ *				'callback' => 'callbackForeignKey',
+ *			),
+ *		);
  * 
- *     function callbackForeignKey() {
- *         return Configure::read('User.id');
- *     }
- * }
+ *		function callbackForeignKey() {
+ *			return Configure::read('User.id');
+ *		}
+ *	}
  *
  * @package AccountManager
  * @author Yasuo Harada
