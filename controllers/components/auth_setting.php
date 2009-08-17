@@ -7,7 +7,7 @@
  *
  * @package AccountManager
  * @author Yasuo Harada
- * @copyright 2009 Slywalker Co,.Ltd.
+ * @copyright 2009 SLYWALKER Co,.Ltd.
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  * @date $LastChangedDate$
  * @version $Rev$
