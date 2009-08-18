@@ -8,23 +8,32 @@ if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 class Article extends CakeTestModel {
 	var $name = 'Article';
 	var $actsAs = array('AccountManager.ForeignKey');
-	var $belongsTo = array('User');
+	var $belongsTo = array('User', 'Category');
 
 	function callbackForeignKey() {
 		return '4a6c5d0c-44d0-4fd5-b099-140c83b789e4';
 	}
 }
 
+class Category extends CakeTestModel {
+	var $name = 'Category';
+	var $actsAs = array('AccountManager.ForeignKey');
+	var $hasMany = array('Article');
+}
+
 App::import('Model', 'AccountManager.User');
 
 class ForeignKeyBehaviorTest extends CakeTestCase {
 	var $fixtures = array(
-		'plugin.account_manager.article', 'plugin.account_manager.user'
+		'plugin.account_manager.article',
+		'plugin.account_manager.user',
+		'plugin.account_manager.category',
 	);
 
 	function startTest() {
 		$this->User =& ClassRegistry::init('User');
 		$this->Article =& ClassRegistry::init('Article');
+		$this->Category =& ClassRegistry::init('Category');
 	}
 
 	function testBforeFindAndBforeValidateAndBeforeDelete() {
@@ -34,6 +43,7 @@ class ForeignKeyBehaviorTest extends CakeTestCase {
 
 		// beforeValidate
 		$data = array('Article' => array(
+			'category_id' => 1,
 			'title' => 'First Article',
 			'body' => 'First Article Body',
 			'published' => 'Y',
@@ -60,6 +70,17 @@ class ForeignKeyBehaviorTest extends CakeTestCase {
 		$results = $this->Article->find('all');
 		$this->assertIdentical(count($results), 1);
 		$id = $results[0]['Article']['id'];
+
+		// assoc
+		$results = $this->Category->find('all');
+		$this->assertIdentical(count($results[0]['Article']), 1);
+		$this->assertIdentical(count($results[1]['Article']), 0);
+
+		$this->Category->Article->foreignKey();
+		$results = $this->Category->find('all');
+		$this->assertIdentical(count($results[0]['Article']), 3);
+		$this->assertIdentical(count($results[1]['Article']), 1);
+		$this->Category->Article->foreignKey('user_id');
 
 		// beforeDelete
 		$result = $this->Article->delete(1);

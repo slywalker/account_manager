@@ -53,7 +53,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 			'callback' => 'callbackForeignKey',
 		);
 		$config = array_merge($defalut, $config);
-		$this->settings[$model->name] = $config;
+		$this->settings[$model->alias] = $config;
 		
 		$model->Session = new SessionComponent;
 	}
@@ -68,9 +68,9 @@ class ForeignKeyBehavior extends ModelBehavior {
 		$args = func_get_args();
 		$foreignKey = call_user_func_array('am', array_slice($args, 1));
 		if (isset($foreignKey[0])) {
-			$this->settings[$model->name]['foreignKey'] = $foreignKey[0];
+			$this->settings[$model->alias]['foreignKey'] = $foreignKey[0];
 		} else {
-			$this->settings[$model->name]['foreignKey'] = false;
+			$this->settings[$model->alias]['foreignKey'] = false;
 		}
 	}
 
@@ -83,24 +83,46 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function beforeFind(&$model, $query) {
-		$fk = $this->settings[$model->name]['foreignKey'];
+		$fk = $this->settings[$model->alias]['foreignKey'];
 		if (isset($query['foreignKey'])) {
 			$fk = $query['foreignKey'];
 		}
-		if ($fk && $model->name === $this->settings[$model->name]['modelName']) {
-			$id = $model->{$this->settings[$model->name]['callback']}();
+		if ($fk && $model->name === $this->settings[$model->alias]['modelName']) {
+			$id = $model->{$this->settings[$model->alias]['callback']}();
 			if ($id) {
 				$conditions = array($model->name.'.id' => $id);
 				$query['conditions'] = Set::merge($query['conditions'], $conditions);
 			}
 		}
 		elseif ($fk && $model->hasField($fk)) {
-			$value = $model->{$this->settings[$model->name]['callback']}();
-			if ($value) {
-				$conditions = array($model->alias.'.'.$fk => $value);
+			$fkValue = $model->{$this->settings[$model->alias]['callback']}();
+			if ($fkValue) {
+				$conditions = array($model->alias.'.'.$fk => $fkValue);
 				$query['conditions'] = Set::merge($query['conditions'], $conditions);
-			} else {
-				//trigger_error(__d('account_manager', "ForeignKeyBehavior: Can't set at find foreign key [{$fk}] in {$model->alias}.", true), E_USER_ERROR);
+			}
+		}
+		
+		$assoc = Set::merge($model->hasMany, $model->hasOne, $model->hasAndBelongsToMany);
+		if (!empty($assoc)) {
+			foreach ($assoc as $key=>$alias) {
+				$_model = $alias;
+				if (is_array($alias)) {
+					$_model = $key;
+				}
+				$fk = $this->settings[$_model]['foreignKey'];
+				if (isset($query['contain'][$_model]['foreignKey'])) {
+					$fk = $query['contain'][$_model]['foreignKey'];
+				}
+				if($fk && $model->{$_model}->hasField($fk)) {
+					$fkValue = $model->{$_model}->{$this->settings[$_model]['callback']}();
+					if ($fkValue) {
+						$conditions = array($_model.'.'.$fk => $fkValue);
+						if (isset($alias['conditions'])) {
+							$conditions = Set::merge($alias['conditions'], $conditions);
+						}
+						$model->bindModel(array('hasMany' => array($_model => array('conditions' => $conditions))));
+					}
+				}
 			}
 		}
 		return $query;
@@ -114,9 +136,9 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function beforeValidate(&$model) {
-		$fk = $this->settings[$model->name]['foreignKey'];
+		$fk = $this->settings[$model->alias]['foreignKey'];
 		if ($fk && !$model->id && $model->hasField($fk)) {
-			$value = $model->{$this->settings[$model->name]['callback']}();
+			$value = $model->{$this->settings[$model->alias]['callback']}();
 			if ($value && !isset($model->data[$model->alias][$fk])) {
 				$model->data[$model->alias][$fk] = $value;
 				return true;
@@ -136,9 +158,9 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function beforeDelete(&$model) {
-		$fk = $this->settings[$model->name]['foreignKey'];
+		$fk = $this->settings[$model->alias]['foreignKey'];
 		if ($fk && $model->hasField($fk)) {
-			$value = $model->{$this->settings[$model->name]['callback']}();
+			$value = $model->{$this->settings[$model->alias]['callback']}();
 			if ($value && !isset($model->data[$model->alias][$fk])) {
 				$conditions = array('id' => $model->id, $fk => $value);
 				$recursive = -1;
@@ -161,7 +183,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function callbackForeignKey(&$model) {
-		return $model->Session->read('Auth.'.$this->settings[$model->name]['modelName'].'.id');
+		return $model->Session->read('Auth.'.$this->settings[$model->alias]['modelName'].'.id');
 	}
 }
 ?>
