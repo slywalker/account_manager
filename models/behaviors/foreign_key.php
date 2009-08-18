@@ -102,25 +102,29 @@ class ForeignKeyBehavior extends ModelBehavior {
 			}
 		}
 		
-		$assoc = Set::merge($model->hasMany, $model->hasOne, $model->hasAndBelongsToMany);
-		if (!empty($assoc)) {
-			foreach ($assoc as $key=>$alias) {
-				$_model = $alias;
-				if (is_array($alias)) {
-					$_model = $key;
-				}
-				$fk = $this->settings[$_model]['foreignKey'];
-				if (isset($query['contain'][$_model]['foreignKey'])) {
-					$fk = $query['contain'][$_model]['foreignKey'];
-				}
-				if($fk && $model->{$_model}->hasField($fk)) {
-					$fkValue = $model->{$_model}->{$this->settings[$_model]['callback']}();
-					if ($fkValue) {
-						$conditions = array($_model.'.'.$fk => $fkValue);
-						if (isset($alias['conditions'])) {
-							$conditions = Set::merge($alias['conditions'], $conditions);
+		$assocs['hasMany'] = $model->hasMany;
+		$assocs['hasOne'] = $model->hasOne;
+		$assocs['hasAndBelongsToMany'] = $model->hasAndBelongsToMany;
+		foreach ($assocs as $type=>$assoc) {
+			if (!empty($assoc)) {
+				foreach ($assoc as $key=>$alias) {
+					$_model = $alias;
+					if (is_array($alias)) {
+						$_model = $key;
+					}
+					$fk = $this->settings[$_model]['foreignKey'];
+					if (isset($query['contain'][$_model]['foreignKey'])) {
+						$fk = $query['contain'][$_model]['foreignKey'];
+					}
+					if($fk && $model->{$_model}->hasField($fk)) {
+						$fkValue = $model->{$_model}->{$this->settings[$_model]['callback']}();
+						if ($fkValue) {
+							$conditions = array($_model.'.'.$fk => $fkValue);
+							if (isset($alias['conditions'])) {
+								$conditions = Set::merge($alias['conditions'], $conditions);
+							}
+							$model->bindModel(array($type => array($_model => array('conditions' => $conditions))));
 						}
-						$model->bindModel(array('hasMany' => array($_model => array('conditions' => $conditions))));
 					}
 				}
 			}
