@@ -109,8 +109,10 @@ class ForeignKeyBehavior extends ModelBehavior {
 			if (!empty($assoc)) {
 				foreach ($assoc as $key=>$alias) {
 					$_model = $alias;
+					$assocParams = array();
 					if (is_array($alias)) {
 						$_model = $key;
+						$assocParams = $alias;
 					}
 					$fk = $this->settings[$_model]['foreignKey'];
 					if (isset($query['contain'][$_model]['foreignKey'])) {
@@ -120,10 +122,8 @@ class ForeignKeyBehavior extends ModelBehavior {
 						$fkValue = $model->{$_model}->{$this->settings[$_model]['callback']}();
 						if ($fkValue) {
 							$conditions = array($_model.'.'.$fk => $fkValue);
-							if (isset($alias['conditions'])) {
-								$conditions = Set::merge($alias['conditions'], $conditions);
-							}
-							$model->bindModel(array($type => array($_model => array('conditions' => $conditions))));
+							$assocParams = Set::merge($assocParams, compact('conditions'));
+							$model->bindModel(array($type => array($_model => $assocParams)));
 						}
 					}
 				}
