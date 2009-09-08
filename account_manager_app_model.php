@@ -22,7 +22,7 @@ class AccountManagerAppModel extends AppModel {
 	 *
 	 * @param array $data 
 	 * @param string $suffix 
-	 * @return void
+	 * @return boolean
 	 * @author Yasuo Harada
 	 */
 	public function checkCompare($data, $suffix) {
@@ -40,7 +40,7 @@ class AccountManagerAppModel extends AppModel {
 	 * Validation message i18n
 	 *
 	 * @param string $field 
-	 * @param boolen $value 
+	 * @param boolean $value 
 	 * @return void
 	 * @author Yasuo Harada
 	 */

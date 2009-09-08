@@ -17,8 +17,14 @@
  * AuthSettingComponent
  **/
 class AuthSettingComponent extends Object {
-	private $useAdminRouting = false;
 
+	/**
+	 * initialize
+	 *
+	 * @param object $controller 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function initialize(&$controller) {
 		if (Configure::read('Routing.admin') && !empty($controller->params[Configure::read('Routing.admin')])) {
 			$this->__adminSettings($controller);
@@ -27,6 +33,13 @@ class AuthSettingComponent extends Object {
 		}
 	}
 	
+	/**
+	 * __authSettings
+	 *
+	 * @param object $controller 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	private function __authSettings(&$controller) {
 		if (isset($controller->Auth)) {
 			$controller->Auth->userModel = 'User';
@@ -38,6 +51,13 @@ class AuthSettingComponent extends Object {
 		}
 	}
 
+	/**
+	 * __adminSettings
+	 *
+	 * @param object $controller 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	private function __adminSettings(&$controller) {
 		if (config('basic')) {
 			$users = BASIC_CONFIG::$default;
@@ -52,5 +72,20 @@ class AuthSettingComponent extends Object {
 		}
 	}
 
+	/**
+	 * startup
+	 *
+	 * @param object $controller 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
+	public function startup(&$controller) {
+		$user = array();
+		if (isset($controller->Auth)) {
+			$user = $controller->Auth->user();
+		}
+		App::import('Model', 'User');
+		User::store($user);
+	}
 }
 ?>

@@ -14,7 +14,19 @@
  * User
  **/
 class User extends AccountManagerAppModel {
+
+	/**
+	 * $name
+	 *
+	 * @var string
+	 */
 	public $name = 'User';
+
+	/**
+	 * $validate
+	 *
+	 * @var array
+	 */
 	public $validate = array(
 		'username' => array(
 			array(
@@ -64,8 +76,21 @@ class User extends AccountManagerAppModel {
 		),
 		'disabled' => array('numeric'),
 	);
+
+	/**
+	 * $__expires
+	 *
+	 * @var string
+	 */
 	private $__expires = '+1 hour';
 
+	/**
+	 * register
+	 *
+	 * @param array $data 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function register($data) {
 		// 期限切れregister削除
 		$conditions = array(
@@ -82,6 +107,13 @@ class User extends AccountManagerAppModel {
 		return $this->save($data);
 	}
 
+	/**
+	 * changeEmail
+	 *
+	 * @param array $data 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function changeEmail($data) {
 		$this->set($data);
 		if (!$this->validates()) {
@@ -99,6 +131,13 @@ class User extends AccountManagerAppModel {
 		return $this->save($_data, false, array('id', 'email_tmp', 'email_checkcode', 'expires'));
 	}
 
+	/**
+	 * changePassword
+	 *
+	 * @param array $data 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function changePassword($data) {
 		$this->set($data);
 		if (!$this->validates()) {
@@ -116,6 +155,13 @@ class User extends AccountManagerAppModel {
 		return $this->save($_data, false, array('id', 'hash_password', 'password_checkcode', 'expires'));
 	}
 
+	/**
+	 * forgotPassword
+	 *
+	 * @param string $email 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function forgotPassword($email) {
 		// email存在確認
 		$conditions = array($this->alias.'.email' => $email);
@@ -135,7 +181,14 @@ class User extends AccountManagerAppModel {
 		return $this->save($_data, false, array('id', 'email', 'password_checkcode', 'expires'));
 	}
 
-	private function _findByEmailCheckcode($emailCheckcode) {
+	/**
+	 * __findByEmailCheckcode
+	 *
+	 * @param string $emailCheckcode 
+	 * @return array Array of records
+	 * @author Yasuo Harada
+	 */
+	private function __findByEmailCheckcode($emailCheckcode) {
 		// checkcode存在確認
 		$conditions = array(
 			$this->alias.'.email_checkcode' => $emailCheckcode,
@@ -144,8 +197,15 @@ class User extends AccountManagerAppModel {
 		return $this->find('first', compact('conditions'));
 	}
 
+	/**
+	 * confirmRegister
+	 *
+	 * @param string $emailCheckcode 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function confirmRegister($emailCheckcode) {
-		$data = $this->_findByEmailCheckcode($emailCheckcode);
+		$data = $this->__findByEmailCheckcode($emailCheckcode);
 		if (!$data) {
 			return false;
 		}
@@ -161,8 +221,15 @@ class User extends AccountManagerAppModel {
 		return $this->save($_data, false, array('id', 'email_checkcode', 'disabled', 'expires'));
 	}
 
+	/**
+	 * confirmEmail
+	 *
+	 * @param string $emailCheckcode 
+	 * @return mixed On success Model::$data if its not empty or true, false on failure
+	 * @author Yasuo Harada
+	 */
 	public function confirmEmail($emailCheckcode) {
-		$data = $this->_findByEmailCheckcode($emailCheckcode);
+		$data = $this->__findByEmailCheckcode($emailCheckcode);
 		if (!$data) {
 			return false;
 		}

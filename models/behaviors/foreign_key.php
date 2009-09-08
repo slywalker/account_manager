@@ -25,7 +25,6 @@
  * @date $LastChangedDate$
  * @version $Rev$
  */
-App::import('Component', 'Session');
 
 /**
  * ForeignKeyBehavior
@@ -33,7 +32,7 @@ App::import('Component', 'Session');
 class ForeignKeyBehavior extends ModelBehavior {
 
 	/**
-	 * settings
+	 * $settings
 	 *
 	 * @var array
 	 */
@@ -54,8 +53,6 @@ class ForeignKeyBehavior extends ModelBehavior {
 		);
 		$config = array_merge($defalut, $config);
 		$this->settings[$model->alias] = $config;
-		
-		$model->Session = new SessionComponent;
 	}
 
 	/**
@@ -187,7 +184,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function callbackForeignKey(&$model) {
-		return $model->Session->read('Auth.'.$this->settings[$model->alias]['modelName'].'.id');
+		return User::get('id');
 	}
 }
 ?>
