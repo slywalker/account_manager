@@ -37,6 +37,10 @@ class User extends AccountManagerAppModel {
 	public $validate = array(
 		'username' => array(
 			array(
+				'rule' => array('maxLength', 20),
+				'message' => 'This field is 20 characters or less',
+			),
+			array(
 				'rule' => array('isUnique'),
 				'message' => 'This field must be unique',
 			),
@@ -65,7 +69,7 @@ class User extends AccountManagerAppModel {
 				'message' => 'This field must be number of characters in English',
 			),
 			array(
-				'rule' => array('minLength', '4'),
+				'rule' => array('minLength', 4),
 				'message' => 'This field needs 4 characters or more',
 			),
 			array(
@@ -271,10 +275,10 @@ class User extends AccountManagerAppModel {
 	//App::import('Model', 'User');
 	//User::store($this->Auth->user());
 
-	private static function &getInstance($user=null) {
+	private static function &getInstance($user = null) {
 		static $instance = array();
 
-		if ($user) {
+		if (!is_null($user)) {
 			$instance[0] =& $user;
 		}
 
@@ -287,8 +291,8 @@ class User extends AccountManagerAppModel {
 	}
 
 	public static function store($user) {
-		if (empty($user)) {
-			return false;
+		if (!$user) {
+			$user = array();
 		}
 
 		User::getInstance($user);

@@ -184,7 +184,8 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function callbackForeignKey(&$model) {
-		return User::get('id');
+		$id = User::get('id');
+		return ($id) ? $id: null;
 	}
 }
 ?>
