@@ -14,10 +14,32 @@
  * UsersController
  **/
 class UsersController extends AccountManagerAppController {
+
+	/**
+	 * $name
+	 *
+	 * @var string
+	 */
 	public $name = 'Users';
+	/**
+	 * components
+	 *
+	 * @var array
+	 */
 	public $components = array('AccountManager.Qdmail', 'AccountManager.Qdsmtp');
+	/**
+	 * helpers
+	 *
+	 * @var array
+	 */
 	public $helpers = array('Gravatar');
 
+	/**
+	 * beforeFilter
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('*');
@@ -35,8 +57,13 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * admin_index
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function admin_index() {
-		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 	}
 
@@ -54,6 +81,13 @@ class UsersController extends AccountManagerAppController {
 		$this->set(compact('user'));
 	}
 
+	/**
+	 * admin_view
+	 *
+	 * @param string $id 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
@@ -62,6 +96,12 @@ class UsersController extends AccountManagerAppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
+	/**
+	 * admin_add
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function admin_add() {
 		if ($this->data) {
 			$this->User->create();
@@ -74,6 +114,13 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * admin_edit
+	 *
+	 * @param string $id 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function admin_edit($id = null) {
 		if (!$id && !$this->data) {
 			$this->Session->setFlash(__d('account_manager', 'Invalid User', true));
@@ -91,6 +138,12 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * delete
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function delete() {
 		if ($this->User->delete($this->Auth->user('id'))) {
 			$this->Session->setFlash(__d('account_manager', 'User deleted', true), 'default', array('class' => 'message success'));
@@ -99,6 +152,13 @@ class UsersController extends AccountManagerAppController {
 		$this->redirect(array('action'=>'view'));
 	}
 
+	/**
+	 * admin_delete
+	 *
+	 * @param string $id 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function admin_delete($id = null) {
 		if (!$id) {
 			if (isset($this->data['delete'])) {
@@ -114,6 +174,12 @@ class UsersController extends AccountManagerAppController {
 		$this->redirect(array('action'=>'index'));
 	}
 
+	/**
+	 * login
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function login() {
 		// 意図しない削除防止
 		if ($this->Session->check('Auth.redirect') && strpos($this->Session->read('Auth.redirect'), '/delete') !== false) {
@@ -121,10 +187,22 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * logout
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function logout() {
 		$this->redirect($this->Auth->logout());
 	}
 
+	/**
+	 * register
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function register() {
 		if ($this->data) {
 			$this->User->begin();
@@ -142,6 +220,12 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * forgot_password
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function forgot_password() {
 		if (isset($this->data['User']['email'])) {
 			$this->User->begin();
@@ -160,6 +244,13 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * confirm_register
+	 *
+	 * @param string $emailCheckcode 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function confirm_register($emailCheckcode = null) {
 		if ($this->User->confirmRegister($emailCheckcode)) {
 			$this->Session->setFlash(__d('account_manager', 'Confirm has been success', true), 'default', array('class' => 'message success'));
@@ -169,6 +260,13 @@ class UsersController extends AccountManagerAppController {
 		$this->redirect(array('action'=>'logout'));
 	}
 
+	/**
+	 * confirm_email
+	 *
+	 * @param string $emailCheckcode 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function confirm_email($emailCheckcode = null) {
 		if ($this->User->confirmEmail($emailCheckcode)) {
 			$this->Session->setFlash(__d('account_manager', 'Confirm has been success', true), 'default', array('class' => 'message success'));
@@ -179,6 +277,12 @@ class UsersController extends AccountManagerAppController {
 	}
 
 
+	/**
+	 * change_email
+	 *
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function change_email() {
 		$user = $this->User->find('first');
 		if (!$user && !$this->data) {
@@ -203,6 +307,13 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * change_password
+	 *
+	 * @param string $id 
+	 * @return void
+	 * @author Yasuo Harada
+	 */
 	public function change_password($id = null) {
 		if (is_null($id)) {
 			$id = $this->Auth->user('id');
@@ -228,6 +339,15 @@ class UsersController extends AccountManagerAppController {
 		}
 	}
 
+	/**
+	 * _send
+	 *
+	 * @param string $to 
+	 * @param string $subject 
+	 * @param string $template 
+	 * @return boolean
+	 * @author Yasuo Harada
+	 */
 	protected function _send($to, $subject, $template = 'default') {
 		if (config('smtp')) {
 			$params = SMTP_CONFIG::$default;

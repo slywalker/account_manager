@@ -23,6 +23,13 @@ class User extends AccountManagerAppModel {
 	public $name = 'User';
 
 	/**
+	 * $recursive
+	 *
+	 * @var integer
+	 */
+	public $recursive = -1;
+
+	/**
 	 * $validate
 	 *
 	 * @var array
