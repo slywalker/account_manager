@@ -80,12 +80,9 @@ class AuthSettingComponent extends Object {
 	 * @author Yasuo Harada
 	 */
 	public function startup(&$controller) {
-		$user = array();
 		if (isset($controller->Auth)) {
-			$user = $controller->Auth->user();
+			Configure::write('Auth', $controller->Auth->user());
 		}
-		App::import('Model', 'User');
-		User::store($user);
 	}
 }
 ?>

@@ -84,7 +84,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 		if (isset($query['foreignKey'])) {
 			$fk = $query['foreignKey'];
 		}
-		if ($fk && $model->name === $this->settings[$model->alias]['modelName']) {
+		if ($fk && $model->alias === $this->settings[$model->alias]['modelName']) {
 			$id = $model->{$this->settings[$model->alias]['callback']}();
 			if ($id) {
 				$conditions = array($model->name.'.id' => $id);
@@ -184,8 +184,7 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @author Yasuo Harada
 	 */
 	public function callbackForeignKey(&$model) {
-		$id = User::get('id');
-		return ($id) ? $id: null;
+		return Configure::read('Auth.User.id');
 	}
 }
 ?>
