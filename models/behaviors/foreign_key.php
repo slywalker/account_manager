@@ -14,7 +14,7 @@
  *			),
  *		);
  * 
- *		function callbackForeignKeyUser() {
+ *		function callbackForeignKey() {
  *			return Configure::read('User.id');
  *		}
  *	}
