@@ -46,6 +46,8 @@ class AuthSettingComponent extends Object {
 			$controller->Auth->fields = array('username' => 'email', 'password' => 'hash_password');
 			$controller->Auth->userScope = array('User.disabled' => 0);
 			$controller->Auth->loginAction = array(Configure::read('Routing.admin') => false, 'plugin' => 'account_manager', 'controller' => 'users', 'action' => 'login');
+			$controller->Auth->loginError = __d('account_manager', 'Login failed. Invalid email or username, password.', true);
+			$controller->Auth->authError = __d('account_manager', 'You are not authorized to access that location.', true);
 			//$controller->Auth->allow('*');
 			//$controller->Auth->deny('add', 'edit', 'delete');
 		}
@@ -81,7 +83,7 @@ class AuthSettingComponent extends Object {
 	 */
 	public function startup(&$controller) {
 		if (isset($controller->Auth)) {
-			Configure::write('Auth', $controller->Auth->user());
+			Configure::write('AccountManager', $controller->Auth->user());
 		}
 	}
 }

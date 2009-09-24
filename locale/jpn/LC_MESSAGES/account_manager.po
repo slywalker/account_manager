@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: account_manager\n"
-"POT-Creation-Date: 2009-08-04 14:51+0900\n"
+"POT-Creation-Date: 2009-09-24 14:53+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yasuo Harada <slywalker.net@gmail.com>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -12,45 +12,53 @@ msgstr ""
 "X-Poedit-Country: JAPAN\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/users_controller.php:38;46;66;169
+#: /controllers/users_controller.php:78;93;126;289
 msgid "Invalid User"
 msgstr "無効なユーザです"
 
-#: /controllers/users_controller.php:56;71
+#: /controllers/users_controller.php:109;131
 msgid "The User has been saved"
 msgstr "ユーザを保存しました"
 
-#: /controllers/users_controller.php:59;74;125
+#: /controllers/users_controller.php:112;134;219
 msgid "The User could not be saved. Please, try again."
 msgstr "ユーザを保存できませんでした。再度試してください"
 
-#: /controllers/users_controller.php:83;93;98
+#: /controllers/users_controller.php:149;166;171
 msgid "User deleted"
 msgstr "ユーザを削除しました"
 
-#: /controllers/users_controller.php:120;137;142;179
+#: /controllers/users_controller.php:214;237;242;299
 msgid "A confirm mail has been sent"
 msgstr "確認メールを送信しました"
 
-#: /controllers/users_controller.php:149;158
+#: /controllers/users_controller.php:256;272
 msgid "Confirm has been success"
 msgstr "確認が成功しました"
 
-#: /controllers/users_controller.php:151;160;197
+#: /controllers/users_controller.php:258;274;324
 msgid "Invalid URL"
 msgstr "無効なURLです"
 
-#: /controllers/users_controller.php:184
+#: /controllers/users_controller.php:304
 msgid "The Email could not be changed. Please, try again."
 msgstr "メールアドレスを変更できませんでした。再度試してください"
 
-#: /controllers/users_controller.php:205
+#: /controllers/users_controller.php:332
 msgid "The Password has been changed"
 msgstr "パスワードを変更しました"
 
-#: /controllers/users_controller.php:209
+#: /controllers/users_controller.php:336
 msgid "The Password could not be changed. Please, try again."
 msgstr "パスワードを変更できませんでした。再度試してください"
+
+#: /controllers/components/auth_setting.php:49
+msgid "Login failed. Invalid email or username, password."
+msgstr "ログインに失敗しました。無効なメールアドレスまたはユーザ、パスワードです"
+
+#: /controllers/components/auth_setting.php:50
+msgid "You are not authorized to access that location."
+msgstr "このページのアクセスには認証が必要です"
 
 #: /views/users/admin_add.ctp:6
 msgid "Add User"

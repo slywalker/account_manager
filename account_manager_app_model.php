@@ -33,21 +33,5 @@ class AccountManagerAppModel extends AppModel {
 		}
 		return true;
 	}
-
-	/**
-	 * invalidate
-	 * 
-	 * Validation message i18n
-	 *
-	 * @param string $field 
-	 * @param boolean $value 
-	 * @return void
-	 * @author Yasuo Harada
-	 */
-	public function invalidate($field, $value = true){
-		parent::invalidate($field, $value);
-		$this->validationErrors[$field] = __d('account_manager', $value, true);
-	}
-
 }
 ?>

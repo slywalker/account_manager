@@ -52,13 +52,21 @@ class ForeignKeyBehavior extends ModelBehavior {
 				'callback' => 'callbackForeignKey',
 			),
 		);
+		$settings = array();
 		foreach ($config as $modelName => $con) {
-			if (!isset($con['callback'])) {
-				$config[$modelName]['callback'] = 'callbackForeignKey'.$modelName;
+			if (!is_array($con)) {
+				$modelName = $con;
+				$con = array();
 			}
+			if (!isset($con['foreignKey'])) {
+				$con['foreignKey'] = Inflector::underscore($modelName).'_id';
+			}
+			if (!isset($con['callback'])) {
+				$con['callback'] = 'callbackForeignKey'.$modelName;
+			}
+			$settings[$modelName] = $con;
 		}
-		$config = Set::merge($defalut, $config);
-		$this->settings[$model->alias] = $config;
+		$this->settings[$model->alias] = Set::merge($defalut, $settings);
 	}
 
 	/**
@@ -110,32 +118,34 @@ class ForeignKeyBehavior extends ModelBehavior {
 				}
 			}
 		
-			$assocs['hasMany'] = $model->hasMany;
-			$assocs['hasOne'] = $model->hasOne;
-			$assocs['hasAndBelongsToMany'] = $model->hasAndBelongsToMany;
-			foreach ($assocs as $type=>$assoc) {
-				if (!empty($assoc)) {
-					foreach ($assoc as $key=>$alias) {
-						$_model = $alias;
-						$assocParams = array();
-						if (is_array($alias)) {
-							$_model = $key;
-							$assocParams = $alias;
-						}
-						$fk = $this->settings[$_model][$modelName]['foreignKey'];
-						if (isset($query['contain'][$_model]['foreignKey'])) {
-							if (isset($query['contain'][$_model]['foreignKey'][$modelName])) {
-								$fk = $query['contain'][$_model]['foreignKey'][$modelName];
-							} elseif ($query['contain'][$_model]['foreignKey'] === false) {
-								$fk = false;
+			if ($fk) {
+				$assocs['hasMany'] = $model->hasMany;
+				$assocs['hasOne'] = $model->hasOne;
+				$assocs['hasAndBelongsToMany'] = $model->hasAndBelongsToMany;
+				foreach ($assocs as $type=>$assoc) {
+					if (!empty($assoc)) {
+						foreach ($assoc as $key=>$alias) {
+							$_model = $alias;
+							$assocParams = array();
+							if (is_array($alias)) {
+								$_model = $key;
+								$assocParams = $alias;
 							}
-						}
-						if($fk && $model->{$_model}->hasField($fk)) {
-							$fkValue = $model->{$_model}->{$this->settings[$_model][$modelName]['callback']}();
-							if ($fkValue) {
-								$conditions = array($_model.'.'.$fk => $fkValue);
-								$assocParams = Set::merge($assocParams, compact('conditions'));
-								$model->bindModel(array($type => array($_model => $assocParams)));
+							$fk = $this->settings[$_model][$modelName]['foreignKey'];
+							if (isset($query['contain'][$_model]['foreignKey'])) {
+								if (isset($query['contain'][$_model]['foreignKey'][$modelName])) {
+									$fk = $query['contain'][$_model]['foreignKey'][$modelName];
+								} elseif ($query['contain'][$_model]['foreignKey'] === false) {
+									$fk = false;
+								}
+							}
+							if($fk && $model->{$_model}->hasField($fk)) {
+								$fkValue = $model->{$_model}->{$this->settings[$_model][$modelName]['callback']}();
+								if ($fkValue) {
+									$conditions = array($_model.'.'.$fk => $fkValue);
+									$assocParams = Set::merge($assocParams, compact('conditions'));
+									$model->bindModel(array($type => array($_model => $assocParams)));
+								}
 							}
 						}
 					}
@@ -196,8 +206,8 @@ class ForeignKeyBehavior extends ModelBehavior {
 	 * @param object $model 
 	 * @return integer or string, user_id
 	 */
-	public function callbackForeignKeyUser(&$model) {
-		return Configure::read('Auth.User.id');
+	public function callbackForeignKey(&$model) {
+		return Configure::read('AccountManager.User.id');
 	}
 }
 ?>
