@@ -38,7 +38,22 @@ class User extends AccountManagerAppModel {
 		'username' => array(
 			array(
 				'rule' => array('maxLength', 20),
-				'message' => 'This field is 20 characters or less',
+			),
+			array(
+				'rule' => array('isUnique'),
+			),
+			array(
+				'rule' => array('notEmpty'),
+			),
+		),
+		'email' => array(
+			array(
+				'rule' => array('checkCompare', '_confirm'),
+				'message' => 'This field is differ with confirm',
+			),
+			array(
+				'rule' => array('email'),
+				'message' => 'This field needs email format',
 			),
 			array(
 				'rule' => array('isUnique'),
@@ -49,32 +64,18 @@ class User extends AccountManagerAppModel {
 				'message' => 'This field is required',
 			),
 		),
-		'email' => array(
+		'password' => array(
 			array(
 				'rule' => array('checkCompare', '_confirm'),
 				'message' => 'This field is differ with confirm',
-			),
-			array(
-				'rule' => array('isUnique'),
-				'message' => 'This field must be unique',
-			),
-			array(
-				'rule' => array('email'),
-				'message' => 'This field needs email format',
-			),
-		),
-		'password' => array(
-			array(
-				'rule' => array('alphaNumeric'),  
-				'message' => 'This field must be number of characters in English',
 			),
 			array(
 				'rule' => array('minLength', 4),
 				'message' => 'This field needs 4 characters or more',
 			),
 			array(
-				'rule' => array('checkCompare', '_confirm'),
-				'message' => 'This field is differ with confirm',
+				'rule' => array('alphaNumeric'),  
+				'message' => 'This field must be number of characters in English',
 			),
 			array(
 				'rule' => array('notEmpty'),
