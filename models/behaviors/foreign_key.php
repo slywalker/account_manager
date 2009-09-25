@@ -82,7 +82,9 @@ class ForeignKeyBehavior extends ModelBehavior {
 		} elseif (count($args) == 1) {
 			$this->settings[$model->alias]['User']['foreignKey'] = $args[0];
 		} else {
-			$this->settings[$model->alias]['User']['foreignKey'] = false;
+			foreach ($this->settings[$model->alias] as $modelName => $setting) {
+				$this->settings[$model->alias][$modelName]['foreignKey'] = false;
+			}
 		}
 	}
 
