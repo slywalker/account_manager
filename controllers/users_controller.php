@@ -345,12 +345,13 @@ class UsersController extends AccountManagerAppController {
 	 * @param string $to 
 	 * @param string $subject 
 	 * @param string $template 
+	 * @param string $config 
 	 * @return boolean
 	 * @author Yasuo Harada
 	 */
-	protected function _send($to, $subject, $template = 'default') {
+	protected function _send($to, $subject, $template = 'default', $config = 'default') {
 		if (config('smtp')) {
-			$params = SMTP_CONFIG::$default;
+			$params = SMTP_CONFIG::$$config;
 			$this->Qdmail->smtp(true);
 			$this->Qdmail->smtpServer($params);
 		}
